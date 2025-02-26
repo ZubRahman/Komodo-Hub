@@ -1,50 +1,87 @@
 <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komodo Hub - Animal Preservation</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 50px;
+        }
 
-<html>
-    <head>
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device - widthm, initial-scale = 1">
-        <title>Komodo Hub</title>
-        <link rel = "stylesheet" href = '../static/css/style.css'>
+        body {
+            background-color: white;
+            background-image: url('background images/orangutan.webp');
+            background-blend-mode: lighten;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+            text-align: center;
+        }
+        .navbar {
+            background-color: lightgray;
+            padding: 13px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .container h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .about {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="../static/images/logo.png" alt="Komodo Hub Logo" class="logo">
+        <ul>
+            <li><a href="default.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact us.html">Contact us</a></li>
+            <li><a href="/aboutus">About</a></li>
+            <li><a href="Support our mission.html">Support Our Mission</a></li>
+            <li><a href="explore conservation.html">Explore Conservation</a></li>
+        </ul>
+    </nav>
     
-    </head>
-
-    <body>
-        <nav class = "navbar">
-            <ul>
-                <li> <a href="default.asp">Home</a> </li>
-                <li> <a href="news.asp">News</a></li>
-                <li> <a href="contact.asp">Contact </a> </li>
-                <li> <a href="about.asp">About </a> </li>
-            </ul>
-        </nav>
-
-        <style>
-            body{
-                background-image: url('background images/orangutan.webp');
-                background-blend-mode: lighten;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-        </style>
-        
-        <div class = "container">
-            <h1> Komodo Hub </h1>
-
-        </div>
-        
-        <h2> About us </h2>
-        We at <b> Komodo Hub </b> ...
-
-        <p>
-
-            Lorem Ipsum <br>
-            is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-
-        
-
-
-    </body>
+    <div class="container">
+        <h1>Komodo Hub</h1>
+        <p>Dedicated to the conservation and protection of wildlife.</p>
+    </div>
+</body>
 </html>
