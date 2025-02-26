@@ -13,7 +13,6 @@
         }
 
         body {
-            background-color: white;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -132,31 +131,6 @@
             margin-top: 10px; /* Space between the background and the content below */
             height: auto;
         }
-
-        .mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .mode-toggle:hover {
-            background-color: #ddd;
-        }
-
-        .mode-toggle img {
-            width: 30px;
-            height: 30px;
-        }
-        
-        body.dark-mode {
-            background-color: #000000;
-            color: white;
-        }
     </style>
 </head>
 <body>
@@ -185,11 +159,10 @@
         </div>
     </div>
 
-    <!-- Additional content or second image -->
     <div class="second-image"></div>
 
     <div class="image-text-container">
-        <img src="../static/images/rhino.webp" alt="Wildlife Image" class="side-image">
+        <img src="../static/images/rhino.webp" alt="thirdimage" class="side-image">
         <div class="side-text">
             <h2>Conservation Efforts</h2>
             <p>We are working tirelessly to protect wildlife through research, habitat restoration, and education. Join us in making a difference and preserving the planet's biodiversity.</p>
@@ -207,6 +180,7 @@
     <div class="footer">
         <p>&copy; 2025 Komodo Hub. All Rights Reserved.</p>
         <p><a href="terms-and-conditions.html">Terms and Conditions</a></p>
+        
     </div>
 
     <div class="social-media">
@@ -224,28 +198,5 @@
         </a>
     </div>
 
-    <div class="mode-toggle" onclick="toggleMode()">
-        <img src="../static/images/darkmode.png" alt="Toggle Dark Mode">
-    </div>
-
-    <script>
-        function toggleMode() {
-            // Toggle the 'dark-mode' class on the body element
-            document.body.classList.toggle('dark-mode')
-            // Change the icon for toggle
-            const modeIcon = document.querySelector('.mode-toggle img')
-            if (document.body.classList.contains('dark-mode')) {
-                modeIcon.src = '../static/images/Lightmode on.png' // Change to sun icon for light mode
-                modeIcon.alt = 'Toggle Light Mode'
-            } else {
-                modeIcon.src = '../static/images/darkmode.png' // Change to moon icon for dark mode
-                modeIcon.alt = 'Toggle Dark Mode'
-            }
-        }
-</script>
-
-    
-
 </body>
 </html>
-

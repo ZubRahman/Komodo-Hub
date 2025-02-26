@@ -1,6 +1,8 @@
 /* General Styles */
 body {
   background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
   background-image: url('../images/wildlifeimage.png');
   background-blend-mode: lighten;
   background-repeat: no-repeat;
