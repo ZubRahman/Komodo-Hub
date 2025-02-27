@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Login - Komodo Hub</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 50px;
+        }
+
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: black;
+        }
+
+        .navbar {
+            background-color: lightgray;
+            padding: 13px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            margin-right: 60px;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            margin-right: 60px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: black;
+            padding: 8px 15px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .container {
+            margin-top: 120px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 200px);
+        }
+
+        .login-form {
+            width: 400px;
+            padding: 30px;
+            background-color: #f8f8f8;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            padding: 20px;
+            background-color: lightgray;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <img src="../static/images/logo.png" alt="Komodo Hub Logo" class="logo">
+    <ul>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="/aboutus">About</a></li>
+        <li><a href="support.html">Support Our Mission</a></li>
+        <li><a href="explore.html">Explore Conservation</a></li>
+    </ul>
+    <div class="auth-buttons">
+        <a href="signup.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="login-form">
+        <h2>Log In</h2>
+        <form action="login_process.php" method="post">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2025 Komodo Hub. All Rights Reserved.</p>
+    <p><a href="terms.html">Terms and Conditions</a></p>
+</div>
+</body>
+</html>

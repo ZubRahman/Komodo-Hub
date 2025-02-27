@@ -14,5 +14,9 @@ def aboutus():
 def contactus():
     return render_template('ContactUs.html',methods=['GET','POST'])
 
+@app.route('/login')
+def login():
+    return render_template('Login.html',methods=['GET','POST'])
+
 if __name__ == '__main__':
     app.run(debug=True)
