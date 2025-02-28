@@ -204,6 +204,8 @@
             <a href="/login">Log In</a>
         </div>
     </nav>
+
+    
     
     <!-- Background image below the navbar -->
     <div class="background-container">
@@ -212,6 +214,26 @@
             <p>Dedicated to the conservation and protection of wildlife.</p>
         </div>
     </div>
+
+
+
+
+
+    <div class="slider">
+        <div class="slides">
+          <img src="/static/images/rhino.webp" alt="Image 1" class="active">
+          <img src="/static/images/wildlifeimage.png" alt="Image 2">
+        </div>
+        <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+        <div class="dots">
+          <div class="dot active" onclick="currentSlide(0)"></div>
+          <div class="dot" onclick="currentSlide(1)"></div>
+        </div>
+    </div>
+
+
+
 
     <div class="container">
         <div class="overlay"> </div>
@@ -275,6 +297,30 @@
             var element = document.body;
             element.classList.toggle("dark-mode");
             }
+        let index = 0;
+        const slides = document.querySelectorAll('.slides img');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function moveSlide(step) {
+            slides[index].classList.remove('active');
+            dots[index].classList.remove('active');
+            index += step;
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            slides[index].classList.remove('active');
+            dots[index].classList.remove('active');
+            index = n;
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        setInterval(() => moveSlide(1), 3000); // Auto Slide Every 3 Seconds
     </script>
 
 
