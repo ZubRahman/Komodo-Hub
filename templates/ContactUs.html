@@ -141,6 +141,11 @@
     </style>
 </head>
 <body>
+
+    <div class = "light-darkmode">
+        <button type = "button", onclick="myFunction()"> Click me </button>
+    </div>
+
     <nav class="navbar">
         <img src="../static/images/logo.png" alt="Komodo Hub Logo" class="logo">
         <div class="nav-links">
@@ -186,6 +191,12 @@
         <p>&copy; 2025 Komodo Hub. All Rights Reserved.</p>
         <p><a href="terms.html">Terms and Conditions</a></p>
     </div>
+    <script>
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            }
+    </script>
 </body>
 </html>
 
