@@ -33,6 +33,21 @@ def features():
 def contact():
     return render_template('contact.html')
 
+@app.route('/contact-submit', methods=['POST'])
+def contact_submit():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    subject = request.form.get('subject')
+    message = request.form.get('message')
+
+    if not name or not email or not subject or not message:
+        flash('All fields are required.', 'error')
+        return redirect(url_for('contact'))
+
+    # Simulate data processing (You can add email or database logic here)
+    flash('Thank you for reaching out! We will get back to you soon.', 'success')
+    return redirect(url_for('contact'))
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -81,9 +96,7 @@ def reports_sightings():
             if photo and allowed_file(photo.filename):
                 filename = secure_filename(photo.filename)
                 photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                # Here you would typically save the file path to a database
         
-        # In a real application, you would save this data to a database
         flash('Thank you for your submission! Your report has been received.', 'success')
         return redirect(url_for('reports_sightings'))
     
@@ -103,4 +116,3 @@ def pricing():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
