@@ -1,0 +1,424 @@
+{% extends "base.html" %}
+
+{% block title %}Learning Resources - Komodo Hub{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learning_resources.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Learning Resources</h1>
+        <p>Access our comprehensive library of conservation education materials.</p>
+    </div>
+</section>
+
+<section class="resources-intro">
+    <div class="container">
+        <div class="intro-content">
+            <h2>Explore Our Digital Library</h2>
+            <p>Komodo Hub offers a wide range of educational resources designed to support conservation learning for all ages. From lesson plans and activities to interactive tools and multimedia content, our digital library provides everything you need to deepen your understanding of biodiversity and conservation.</p>
+            <p>All resources are developed by conservation experts and educators, and are regularly updated to reflect the latest scientific knowledge and educational best practices.</p>
+        </div>
+        
+        <div class="search-section">
+            <form class="search-form">
+                <input type="text" placeholder="Search for resources...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="resource-categories">
+    <div class="container">
+        <h2>Resource Categories</h2>
+        <div class="categories-grid">
+            <a href="#lesson-plans" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Lesson Plans</h3>
+                <p>Structured lessons for classroom or home learning</p>
+            </a>
+            
+            <a href="#activities" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Activities</h3>
+                <p>Hands-on conservation activities and projects</p>
+            </a>
+            
+            <a href="#multimedia" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-photo-video"></i>
+                </div>
+                <h3>Multimedia</h3>
+                <p>Videos, animations, and interactive presentations</p>
+            </a>
+            
+            <a href="#field-guides" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-binoculars"></i>
+                </div>
+                <h3>Field Guides</h3>
+                <p>Species identification and habitat guides</p>
+            </a>
+            
+            <a href="#data-tools" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Data Tools</h3>
+                <p>Tools for collecting and analyzing conservation data</p>
+            </a>
+            
+            <a href="#games" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Games</h3>
+                <p>Educational games and simulations</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="lesson-plans" class="resource-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Lesson Plans</h2>
+            <p>Standards-aligned lesson plans for various age groups and subjects.</p>
+        </div>
+        
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label for="age-group">Age Group</label>
+                <select id="age-group">
+                    <option value="all">All Ages</option>
+                    <option value="5-8">5-8 years</option>
+                    <option value="9-12">9-12 years</option>
+                    <option value="13-16">13-16 years</option>
+                    <option value="17+">17+ years</option>
+                    <option value="adult">Adult</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="subject">Subject</label>
+                <select id="subject">
+                    <option value="all">All Subjects</option>
+                    <option value="science">Science</option>
+                    <option value="geography">Geography</option>
+                    <option value="biology">Biology</option>
+                    <option value="environmental">Environmental Studies</option>
+                    <option value="social">Social Studies</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="duration">Duration</label>
+                <select id="duration">
+                    <option value="all">Any Length</option>
+                    <option value="short">Under 30 mins</option>
+                    <option value="medium">30-60 mins</option>
+                    <option value="long">Over 60 mins</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary filter-button">Apply Filters</button>
+        </div>
+        
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/lesson1.jpg') }}" alt="Marine Ecosystems Lesson">
+                    <div class="resource-badge">Ages 9-12</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Marine Ecosystems: Understanding Coral Reefs</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-clock"></i> 45 minutes</span>
+                        <span><i class="fas fa-graduation-cap"></i> Science</span>
+                        <span><i class="fas fa-download"></i> 1,245 downloads</span>
+                    </div>
+                    <p>A comprehensive lesson plan exploring coral reef ecosystems, their importance, and the threats they face.</p>
+                    <a href="#" class="btn btn-outline">Download Lesson</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/lesson2.jpg') }}" alt="Rainforest Biodiversity Lesson">
+                    <div class="resource-badge">Ages 13-16</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Rainforest Biodiversity: Layers of Life</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-clock"></i> 60 minutes</span>
+                        <span><i class="fas fa-graduation-cap"></i> Biology</span>
+                        <span><i class="fas fa-download"></i> 987 downloads</span>
+                    </div>
+                    <p>Explore the different layers of rainforest ecosystems and the incredible biodiversity they support.</p>
+                    <a href="#" class="btn btn-outline">Download Lesson</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/lesson3.jpg') }}" alt="Endangered Species Lesson">
+                    <div class="resource-badge">Ages 5-8</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Endangered Animals: Our Special Friends</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-clock"></i> 30 minutes</span>
+                        <span><i class="fas fa-graduation-cap"></i> Science</span>
+                        <span><i class="fas fa-download"></i> 1,532 downloads</span>
+                    </div>
+                    <p>An introductory lesson for young learners about endangered animals and simple conservation concepts.</p>
+                    <a href="#" class="btn btn-outline">Download Lesson</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/lesson4.jpg') }}" alt="Climate Change Lesson">
+                    <div class="resource-badge">Ages 17+</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Climate Change and Biodiversity Loss</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-clock"></i> 90 minutes</span>
+                        <span><i class="fas fa-graduation-cap"></i> Environmental Studies</span>
+                        <span><i class="fas fa-download"></i> 856 downloads</span>
+                    </div>
+                    <p>An advanced lesson examining the relationship between climate change and global biodiversity loss.</p>
+                    <a href="#" class="btn btn-outline">Download Lesson</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-more-container">
+            <a href="#" class="btn btn-secondary">View More Lesson Plans</a>
+        </div>
+    </div>
+</section>
+
+<section id="activities" class="resource-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Activities</h2>
+            <p>Hands-on conservation activities and projects for various settings.</p>
+        </div>
+        
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/activity1.jpg') }}" alt="Butterfly Garden Activity">
+                    <div class="resource-badge">Ages 5-12</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Create a Butterfly Garden</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Outdoor</span>
+                        <span><i class="fas fa-users"></i> Group</span>
+                        <span><i class="fas fa-download"></i> 2,145 downloads</span>
+                    </div>
+                    <p>Step-by-step guide to creating a butterfly garden that supports pollinators and local biodiversity.</p>
+                    <a href="#" class="btn btn-outline">Download Activity</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/activity2.jpg') }}" alt="Water Quality Testing Activity">
+                    <div class="resource-badge">Ages 13+</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Water Quality Testing</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Field</span>
+                        <span><i class="fas fa-users"></i> Group</span>
+                        <span><i class="fas fa-download"></i> 1,432 downloads</span>
+                    </div>
+                    <p>Learn how to test and monitor water quality in local streams, rivers, or ponds using simple tools.</p>
+                    <a href="#" class="btn btn-outline">Download Activity</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/activity3.jpg') }}" alt="Bird Feeder Activity">
+                    <div class="resource-badge">Ages 5-8</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Recycled Bird Feeders</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Indoor/Outdoor</span>
+                        <span><i class="fas fa-user"></i> Individual</span>
+                        <span><i class="fas fa-download"></i> 3,210 downloads</span>
+                    </div>
+                    <p>Create bird feeders from recycled materials to support local bird populations and learn about bird species.</p>
+                    <a href="#" class="btn btn-outline">Download Activity</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-image">
+                    <img src="{{ url_for('static', filename='images/activity4.jpg') }}" alt="Habitat Mapping Activity">
+                    <div class="resource-badge">Ages 9-16</div>
+                </div>
+                <div class="resource-content">
+                    <h3>Habitat Mapping</h3>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Field</span>
+                        <span><i class="fas fa-users"></i> Group</span>
+                        <span><i class="fas fa-download"></i> 987 downloads</span>
+                    </div>
+                    <p>Learn how to map and document local habitats and the species that depend on them.</p>
+                    <a href="#" class="btn btn-outline">Download Activity</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-more-container">
+            <a href="#" class="btn btn-secondary">View More Activities</a>
+        </div>
+    </div>
+</section>
+
+<section id="multimedia" class="resource-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Multimedia Resources</h2>
+            <p>Videos, animations, and interactive presentations about conservation topics.</p>
+        </div>
+        
+        <div class="multimedia-grid">
+            <div class="multimedia-card">
+                <div class="multimedia-preview">
+                    <img src="{{ url_for('static', filename='images/video1.jpg') }}" alt="Coral Reef Video">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="multimedia-content">
+                    <h3>Coral Reefs: Rainforests of the Sea</h3>
+                    <div class="multimedia-meta">
+                        <span><i class="fas fa-video"></i> Video</span>
+                        <span><i class="fas fa-clock"></i> 12 minutes</span>
+                    </div>
+                    <p>An engaging video exploring the biodiversity of coral reefs and their importance to marine ecosystems.</p>
+                </div>
+            </div>
+            
+            <div class="multimedia-card">
+                <div class="multimedia-preview">
+                    <img src="{{ url_for('static', filename='images/interactive1.jpg') }}" alt="Food Web Interactive">
+                    <div class="interactive-badge">
+                        <i class="fas fa-hand-pointer"></i> Interactive
+                    </div>
+                </div>
+                <div class="multimedia-content">
+                    <h3>Food Web Explorer</h3>
+                    <div class="multimedia-meta">
+                        <span><i class="fas fa-laptop"></i> Interactive</span>
+                        <span><i class="fas fa-users"></i> All Ages</span>
+                    </div>
+                    <p>An interactive tool for exploring food webs in different ecosystems and understanding ecological relationships.</p>
+                </div>
+            </div>
+            
+            <div class="multimedia-card">
+                <div class="multimedia-preview">
+                    <img src="{{ url_for('static', filename='images/video2.jpg') }}" alt="Rainforest Video">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="multimedia-content">
+                    <h3>Journey Through the Rainforest</h3>
+                    <div class="multimedia-meta">
+                        <span><i class="fas fa-video"></i> Video</span>
+                        <span><i class="fas fa-clock"></i> 15 minutes</span>
+                    </div>
+                    <p>A virtual tour of rainforest ecosystems, highlighting their biodiversity and conservation challenges.</p>
+                </div>
+            </div>
+            
+            <div class="multimedia-card">
+                <div class="multimedia-preview">
+                    <img src="{{ url_for('static', filename='images/animation1.jpg') }}" alt="Climate Change Animation">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="multimedia-content">
+                    <h3>Climate Change Explained</h3>
+                    <div class="multimedia-meta">
+                        <span><i class="fas fa-film"></i> Animation</span>
+                        <span><i class="fas fa-clock"></i> 8 minutes</span>
+                    </div>
+                    <p>An animated explanation of climate change, its causes, effects, and solutions, designed for young audiences.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-more-container">
+            <a href="#" class="btn btn-secondary">View More Multimedia</a>
+        </div>
+    </div>
+</section>
+
+<section class="teacher-dashboard">
+    <div class="container">
+        <div class="dashboard-content">
+            <div class="dashboard-info">
+                <h2>Teacher Dashboard</h2>
+                <p>Our specialized Teacher Dashboard provides educators with powerful tools to create, manage, and track conservation education activities.</p>
+                <ul class="dashboard-features">
+                    <li><i class="fas fa-check-circle"></i> Create custom lesson plans and activities</li>
+                    <li><i class="fas fa-check-circle"></i> Assign resources to specific classes or students</li>
+                    <li><i class="fas fa-check-circle"></i> Track student progress and engagement</li>
+                    <li><i class="fas fa-check-circle"></i> Generate reports on learning outcomes</li>
+                    <li><i class="fas fa-check-circle"></i> Collaborate with other educators</li>
+                    <li><i class="fas fa-check-circle"></i> Access premium educational resources</li>
+                </ul>
+                <a href="{{ url_for('signup', plan='school') }}" class="btn btn-primary">Access Teacher Dashboard</a>
+            </div>
+            <div class="dashboard-image">
+                <img src="{{ url_for('static', filename='images/teacher-dashboard.jpg') }}" alt="Teacher Dashboard">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="resource-request">
+    <div class="container">
+        <div class="request-content">
+            <h2>Can't Find What You're Looking For?</h2>
+            <p>If you need specific resources or have ideas for new educational materials, let us know! We regularly develop new content based on user requests.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary">Request Resources</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Start Your Conservation Learning Journey</h2>
+        <p>Create an account to access all our learning resources, save favorites, track progress, and contribute to our global conservation community.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/learning_resources.js') }}"></script>
+{% endblock %}
+
