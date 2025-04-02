@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Komodo Hub - Animal Preservation</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        body {
+            padding: 25px;
+            background-color: white;
+            color: black;
+            font-size: 25px;
+        }
+        .logo {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            height: 50px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: lightgray;
+            padding: 13px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000; /* Keeps the navbar fixed on top */
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin-left: 300px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: center;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            margin-right: 60px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        /* Image below the navbar */
+        .background-container {
+            background-image: url('../static/images/orangutan.webp');
+            background-repeat: no-repeat;
+            background-size: cover; /* Makes the image smaller */
+            background-position: center;
+            height: 100vh; /* Controls the height of the background image below the navbar */
+            width: 100%;
+            margin-top: 70px; /* Adds space below the fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .content {
+            z-index: 1; /* Ensures the text appears above the background */
+        }
+
+        /* Second image or any additional content below */
+        .second-image {
+            background-image: url('../static/images/wildlife.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Height for the second image */
+            width: 100%;
+        }
+
+        .image-text-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            margin-top: 10px;
+        }
+
+        .side-image {
+            flex: 1;
+            max-width: 50%; /* Set a max width for the image */
+            height: auto;
+        }
+
+        /* Styling for the text in the side-by-side section */
+        .side-text {
+            flex: 1;
+            padding: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Ensure that the body can scroll when content overflows */
+        .scrollable-content {
+            padding: 20px;
+            margin-top: 10px; /* Space between the background and the content below */
+            height: auto;
+        }
+
+
+        /* tiger image */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('/static/images/wildlife.jpg'); /* Use your image path */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 5%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
+        }
+
+        .content {
+            position: relative;
+            color: white;
+            max-width: 500px;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            display: inline-block;
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+    
+    <nav class="navbar">
+        <a href = "/">
+            <img src="/static/images/logo.png" alt="Komodo Hub Logo" class="logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="news.html">News</a></li>
+                <li><a href="/contactus">Contact us</a></li>
+                <li><a href="/aboutus">About</a></li>
+                <li><a href="Support our mission.html">Support Our Mission</a></li>
+                <li><a href="explore conservation.html">Explore Conservation</a></li>
+            </ul>
+        </div>
+        <div class="auth-buttons">
+            <a href="signup.html">Sign Up</a>
+            <a href="/login">Log In</a>
+        </div>
+    </nav>
+
+    
+    
+    <!-- Background image below the navbar -->
+    <div class="background-container">
+        <div class="content">
+            <h1>Welcome to Komodo Hub</h1>
+            <p>Dedicated to the conservation and protection of wildlife.</p>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="slider">
+        <div class="slides">
+          <img src="/static/images/rhino.webp" alt="Image 1" class="active">
+          <img src="/static/images/wildlifeimage.png" alt="Image 2">
+        </div>
+        <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+        <div class="dots">
+          <div class="dot active" onclick="currentSlide(0)"></div>
+          <div class="dot" onclick="currentSlide(1)"></div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        <div class="overlay"> </div>
+        <div class="content">
+            <h1>Preserve wildlife and make a difference</h1>
+            <p>Protecting wildlife starts with saving their habitat - Your actions make an unforgettable impact</p>
+        </div>
+    </div>
+
+    <div class="image-text-container">
+        <img src="../static/images/rhino.webp" alt="thirdimage" class="side-image">
+        <div class="side-text">
+            <h2>Conservation Efforts</h2>
+            <p>We are working tirelessly to protect wildlife through research, habitat restoration, and education. Join us in making a difference and preserving the planet's biodiversity.</p>
+        </div>
+    </div>
+
+    <!-- Scrollable content below -->
+    <div class="scrollable-content">
+        <h2>More Information</h2>
+        <p>This is where the rest of the page content goes. The page will scroll down to show more of the content you add here.</p>
+        <p>Feel free to add more sections, images, or other elements. The page will allow scrolling down after the initial background image.</p>
+        <!-- More sections can be added here -->
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Komodo Hub. All Rights Reserved.</p>
+        <p><a href="terms-and-conditions.html">Terms and Conditions</a></p>        
+    </div>
+
+    <div class="social-media">
+        <a href="https://www.facebook.com" target="_blank" title="Facebook">
+            <img src="../static/images/facebooklogo.webp" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com" target="_blank" title="Instagram">
+            <img src="../static/images/Instagram_iconpng.webp" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com" target="_blank" title="Youtube">
+            <img src="../static/images/youtubelogo.png" alt="youtube">
+        </a>
+        <a href="https://X.com" target="" title="X">
+            <img src="../static/images/X_icon.png" alt="youtube">
+        </a>
+    </div>
+
+    <div class = "darkmode">
+        <a onclick="myFunction()">
+            <img id = darkmode src="/static/images/darkmode.png" alt="dm"> </img>
+        </a>
+    </div>
+    
+
+    <script>
+        function myFunction() {
+            var img = document.getElementById("darkmode");
+            if (img.src.includes("darkmode.png")) {
+                img.src = "/static/images/Lightmode_on.png"; // Second Image
+            } else {
+                img.src = "/static/images/darkmode.png"; // Back to First Image
+            }
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            }
+        let index = 0;
+        const slides = document.querySelectorAll('.slides img');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function moveSlide(step) {
+            slides[index].classList.remove('active');
+            dots[index].classList.remove('active');
+            index += step;
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            slides[index].classList.remove('active');
+            dots[index].classList.remove('active');
+            index = n;
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        setInterval(() => moveSlide(1), 3000); // Auto Slide Every 3 Seconds
+    </script>
+
+
+
+</body>
+</html>
