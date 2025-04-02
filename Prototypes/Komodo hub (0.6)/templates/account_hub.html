@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Account Hub - Komodo Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Account Settings</h2>
+    <form method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="{{ user['first_name'] }}" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value="{{ user['last_name'] }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ user['email'] }}" required>
+
+        <label for="country">Country:</label>
+        <select name="country">
+            <option value="United Kingdom" {% if user['user_type'] == 'United Kingdom' %}selected{% endif %}>United Kingdom</option>
+            <option value="United States" {% if user['user_type'] == 'United States' %}selected{% endif %}>United States</option>
+            <option value="Australia" {% if user['user_type'] == 'Australia' %}selected{% endif %}>Australia</option>
+        </select>
+
+        <label for="password">New Password (leave blank to keep current):</label>
+        <input type="password" name="password">
+
+        <button type="submit">Update Account</button>
+    </form>
+</div>
+{% endblock %}
