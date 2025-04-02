@@ -1,0 +1,177 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Our Mission</title>
+  <style>
+    
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #000000; 
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav {
+        background: #000000; 
+        color: #ffffff; 
+        padding: 1em;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .logo {
+        margin-left: 1em;
+    }
+
+    nav .logo h1 {
+        font-size: 1.5em;
+        color: #ffffff; 
+    }
+
+    nav ul.navigation {
+        list-style: none;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul.navigation li {
+        margin: 0 1em;
+    }
+
+    nav ul.navigation li a {
+        color: #ffffff; 
+        text-decoration: none;
+    }
+
+    .introduction {
+        padding: 2em;
+        text-align: center;
+        background: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .introduction h1 {
+        font-size: 2em;
+        color: #000000; 
+    }
+
+    .introduction p {
+        font-size: 1.2em;
+        color: #000000; 
+    }
+
+    .introduction button {
+        background: #000000; 
+        color: #ffffff; 
+        border: none;
+        padding: 1em 2em;
+        margin: 0.5em;
+        cursor: pointer;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .introduction button:hover {
+        background: #ffffff; 
+        color: #000000; 
+    }
+
+    .supportOurmission {
+        padding: 2em;
+    }
+
+    .supportOurmission h2.centered-title {
+        font-size: 1.8em;
+        color: #000000; 
+        text-align: center; 
+    }
+
+    .supportOurmission p.centered-text {
+        text-align: center; 
+        color: #000000; 
+    }
+
+    .supportOurmission .support-hubFeatures {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .supportOurmission .hubFeatures {
+        text-align: center;
+        background: #ffffff; 
+        padding: 1em;
+        margin: 1em;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 1 1 calc(33.333% - 2em);
+        box-sizing: border-box;
+    }
+
+    .supportOurmission .hubFeatures h3 {
+        font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>KOMODO HUB</h1>
+      </div>
+      <ul class="navigation">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="introduction">
+      <h1>Support Our Mission</h1>
+      <p>Join us at Komodo Hub where we connect schools, communities, and individuals to protect our endangered species.</p>
+      <button onclick="getStarted()">Get Started</button>
+      <button onclick="learnMore()">Learn More</button>
+    </section>
+
+    <section class="supportOurmission">
+      <h2 class="centered-title">Protecting Indonesia's Wildlife</h2>
+      <p class="centered-text">At Komdo Hub we want the public to become apart of our family to help save our endangered animals here in Indonesia. Below are some things you can do to help us.</p>
+      <div class="support-hubFeatures">
+        <div class="hubFeatures">
+          <h3>Learn</h3>
+          <p>Learn more about our mission as to why here at Komodo Hub our main aim is to save our endangered animals in Indonesia. Learn about the factors causing the extinction of our animals and how you can help prevent this.</p>
+        </div>
+        <div class="hubFeatures">
+          <h3>Participate</h3>
+          <p>Participate in the efforts to save our animals by joining our communities here at Komdo Hub. By joining us you are able to help with saving our animals by creating new habitats, lowering pollution and also separating endangered species from other species in the habitats.</p>
+        </div>
+        <div class="hubFeatures">
+          <h3>Report</h3>
+          <p>Share any sightings of our endangered wildlife with us at Komodo Hub and we will do our best to recover them and bring them to safety. Also report any issues you find such as habitat issues and highly polluted areas.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function getStarted() {
+      window.location.href = 'get_started.html';
+    }
+
+    function learnMore() {
+      window.location.href = 'learn_more.html';
+    }
+  </script>
+</body>
+</html>

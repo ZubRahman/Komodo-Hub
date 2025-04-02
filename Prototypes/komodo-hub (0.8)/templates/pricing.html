@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+
+{% block title %}Pricing - KOMODO HUB{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="section-header text-center">
+            <h1>Pricing Plans</h1>
+            <p>Choose the right plan for your conservation journey.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-plans">
+    <div class="container">
+        <div class="pricing-grid">
+            <!-- Schools Plan -->
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Schools</h3>
+                    <div class="pricing-amount">
+                        <span class="price">£10</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="pricing-description">Per student or teacher</p>
+                </div>
+                <div class="pricing-card-content">
+                    <ul class="check-list">
+                        <li>Structured conservation education modules</li>
+                        <li>Class management tools for teachers</li>
+                        <li>Student activity tracking</li>
+                        <li>Internal school library system</li>
+                        <li>Secure student data protection</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-block">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Individuals Plan -->
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3>Individuals</h3>
+                    <div class="pricing-amount">
+                        <span class="price">£15</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="pricing-description">Per individual user</p>
+                </div>
+                <div class="pricing-card-content">
+                    <ul class="check-list">
+                        <li>Full access to knowledge base</li>
+                        <li>Personalized account with avatar</li>
+                        <li>Contribution tracking</li>
+                        <li>Species sighting reports</li>
+                        <li>Conservation event notifications</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-block">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Engaged Communities Plan -->
+            <div class="pricing-card featured">
+                <div class="pricing-card-header">
+                    <h3>Engaged Communities</h3>
+                    <div class="pricing-amount">
+                        <span class="price">£30</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="pricing-description">Up to 20 people</p>
+                </div>
+                <div class="pricing-card-content">
+                    <ul class="check-list">
+                        <li>Public member profiles</li>
+                        <li>Research publication tools</li>
+                        <li>Community contribution tracking</li>
+                        <li>Analytics dashboard</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+                <div class="pricing-card-footer">
+                    <a href="{{ url_for('signup') }}" class="btn btn-outline btn-block">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our pricing plans.</p>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Can I change my plan later?</h3>
+                <p>Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer discounts for larger schools?</h3>
+                <p>Yes, we offer volume discounts for schools with more than 100 students. Please contact our sales team for custom pricing.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How secure is student data?</h3>
+                <p>We take data security seriously. Student data is encrypted, never publicly visible, and protected by strict access controls.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can communities collaborate with schools?</h3>
+                <p>Yes, our platform facilitates collaboration between conservation communities and schools through shared projects and resources.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Ready to Join?</h2>
+            <p>Start your conservation journey with KOMODO HUB today.</p>
+        </div>
+        <div class="cta-buttons">
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Sales</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
