@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Komodo Hub - Conservation Education Platform{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Welcome to Komodo Hub</h1>
+            <p>Connecting communities, schools, and individuals to protect endangered species and promote conservation education.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('signup') }}" class="btn btn-primary">Join Our Community</a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-programs">
+    <div class="container">
+        <h2>Featured Conservation Programs</h2>
+        <div class="program-cards">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/program1.jpg') }}" alt="Coral Reef Protection">
+                <div class="card-content">
+                    <h3>Coral Reef Protection</h3>
+                    <p>Join our initiative to monitor and protect endangered coral reef ecosystems.</p>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/program2.jpg') }}" alt="Rainforest Conservation">
+                <div class="card-content">
+                    <h3>Rainforest Conservation</h3>
+                    <p>Help preserve biodiversity in critical rainforest habitats around the world.</p>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/program3.jpg') }}" alt="Marine Life Protection">
+                <div class="card-content">
+                    <h3>Marine Life Protection</h3>
+                    <p>Track and report marine species to help conservation efforts in your local waters.</p>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="latest-news">
+    <div class="container">
+        <h2>Latest News & Updates</h2>
+        <div class="news-grid">
+            <article class="news-item">
+                <div class="news-date">May 15, 2025</div>
+                <h3>School Program Reaches 500 Participants</h3>
+                <p>Our educational initiative has now reached over 500 schools worldwide, engaging students in conservation efforts.</p>
+            </article>
+            <article class="news-item">
+                <div class="news-date">May 10, 2025</div>
+                <h3>New Species Sighting Reported</h3>
+                <p>Community members have reported sightings of a rare amphibian species thought to be extinct in the region.</p>
+            </article>
+            <article class="news-item">
+                <div class="news-date">May 5, 2025</div>
+                <h3>Conservation Grant Awarded</h3>
+                <p>Komodo Hub has received a major grant to expand its digital conservation education tools.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <h2>What Our Community Says</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Komodo Hub has transformed how our school approaches environmental education. The students are more engaged than ever!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="{{ url_for('static', filename='images/teacher.jpg') }}" alt="Teacher">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <p>Science Teacher, Greenfield Academy</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"The reporting tools have allowed our community to contribute meaningful data to conservation efforts in our region."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="{{ url_for('static', filename='images/community-leader.jpg') }}" alt="Community Leader">
+                    <div>
+                        <h4>Michael Chen</h4>
+                        <p>Community Leader, Coastal Conservation Group</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="prev-slide" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-slide" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="join-cta">
+    <div class="container">
+        <h2>Ready to Make a Difference?</h2>
+        <p>Join thousands of schools, communities, and individuals working together for conservation.</p>
+        <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Today</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}
+
