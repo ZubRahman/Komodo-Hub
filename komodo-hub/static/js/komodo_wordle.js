@@ -66,33 +66,51 @@ function updateBoard() {
 }
 
 function checkGuess() {
-  if (gameOver || currentGuess.length < 5) return
-  const tiles = document.querySelectorAll(".tile")
-  const guessArray = currentGuess.split("")
-  const targetArray = targetWord.split("")
+  if (gameOver || currentGuess.length < 5) return;
+  
+  const tiles = document.querySelectorAll(".tile");
+  const guessArray = currentGuess.split("");
+  const targetArray = targetWord.split("");
 
   for (let i = 0; i < 5; i++) {
     if (guessArray[i] === targetArray[i]) {
-      tiles[currentRow * 5 + i].classList.add("correct")
+      tiles[currentRow * 5 + i].classList.add("correct");
     } else if (targetArray.includes(guessArray[i])) {
-      tiles[currentRow * 5 + i].classList.add("present")
+      tiles[currentRow * 5 + i].classList.add("present");
     } else {
-      tiles[currentRow * 5 + i].classList.add("absent")
+      tiles[currentRow * 5 + i].classList.add("absent");
     }
   }
 
   if (currentGuess === targetWord) {
-    document.getElementById("message").textContent = "🎉 Congratulations! You guessed it!"
-    gameOver = true
-    setTimeout(() => askToRestart(), 1000)
+    document.getElementById("message").textContent = "🎉 Congratulations! You guessed it!";
+    gameOver = true;
+    saveScore(100);  // Example: full points if correct
+    setTimeout(() => askToRestart(), 1000);
   } else if (currentRow === 5) {
-    document.getElementById("message").textContent = `❌ Game Over! The word was ${targetWord}`
-    gameOver = true
-    setTimeout(() => askToRestart(), 1000)
+    document.getElementById("message").textContent = `❌ Game Over! The word was ${targetWord}`;
+    gameOver = true;
+    saveScore(50);  // Example: partial points for participation
+    setTimeout(() => askToRestart(), 1000);
   } else {
-    currentRow++
-    currentGuess = ""
+    currentRow++;
+    currentGuess = "";
   }
+}
+
+function saveScore(score) {
+  fetch("/save_score", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ score: score })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (!data.success) {
+      console.warn("Score not saved:", data.message);
+    }
+  })
+  .catch(error => console.error("Error:", error));
 }
 
 function askToRestart() {
