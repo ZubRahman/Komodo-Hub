@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import os
 from werkzeug.utils import secure_filename
 import sqlite3
@@ -289,9 +289,103 @@ def account_settings():
 def manage_payments():
   return render_template('manage_payments.html')
 
-@app.route('/progress')
+@app.route("/save_score", methods=["POST"])
+def save_score():
+    if "id" not in session:
+        return jsonify({"success": False, "message": "User not logged in"}), 401  # Unauthorized
+
+    data = request.json
+    score = data.get("score", 0)
+    user_id = session["id"]  # Retrieve logged-in user's ID
+
+    conn = sqlite3.connect("gamescore.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO scores (user_id, score) VALUES (?, ?)", (user_id, score))
+    conn.commit()
+    conn.close()
+
+    return jsonify({"success": True, "message": "Score saved successfully"}), 200
+
+@app.route("/progress")
 def progress():
-  return render_template('progress.html')
+    if "id" not in session:
+        return "You must be logged in to view your progress.", 403  # Forbidden
+
+    user_id = session["id"]
+
+    conn = sqlite3.connect("gamescore.db")
+    cursor = conn.cursor()
+
+    # Get all scores for this user
+    cursor.execute("SELECT score, created_at FROM scores WHERE user_id = ? ORDER BY created_at ASC", (user_id,))
+    scores_data = cursor.fetchall()
+
+    conn.close()
+
+    # Convert data for visualization
+    scores = [row[0] for row in scores_data]
+    timestamps = [row[1] for row in scores_data]
+
+    return render_template(
+        "progress.html",
+        scores=scores,
+        timestamps=timestamps
+    )
+
+# Query to get all users
+def get_users():
+    conn = get_db_connection()
+
+    print(f"DEBUG: Connection Object Type: {type(conn)}")  # Check type
+    print(f"DEBUG: Connection Value: {conn}")  # Check actual value
+
+    query = 'SELECT id, first_name, last_name FROM users'
+    users = conn.execute(query).fetchall()
+    conn.close()
+    return users
+
+# Query to get highest score for each user from gamescore table
+def get_highest_scores():
+    conn = sqlite3.connect('gamescore.db')
+
+    print(f"DEBUG: Connection Object Type: {type(conn)}")  # Check type
+    print(f"DEBUG: Connection Value: {conn}")  # Check actual value
+
+    conn.row_factory = sqlite3.Row  # Enables column access by name
+    query = '''
+        SELECT id, MAX(score) AS highest_score
+        FROM scores
+        GROUP BY id
+    '''
+    scores = conn.execute(query).fetchall()
+    conn.close()
+    return scores
+
+@app.route('/leaderboard')
+def leaderboard():
+    users = get_users()  # Get all users
+    scores = get_highest_scores()  # Get highest scores
+
+    # Create a dictionary to store the highest score per user
+    score_dict = {score['id']: score['highest_score'] for score in scores}
+
+    # Merge user information with their highest score
+    leaderboard_data = []
+    for user in users:
+        user_score = score_dict.get(user['id'])
+        if user_score is not None:
+            leaderboard_data.append({
+                'rank': len(leaderboard_data) + 1,
+                'first_name': user['first_name'],
+                'last_name': user['last_name'],
+                'highest_score': user_score
+            })
+
+    # Sort by highest score (descending order)
+    leaderboard_data.sort(key=lambda x: x['highest_score'], reverse=True)
+
+    return render_template('leaderboard.html', leaderboard=leaderboard_data)
+
 
 if __name__ == '__main__':
   # Initialize DB when app starts

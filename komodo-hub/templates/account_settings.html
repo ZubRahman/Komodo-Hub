@@ -81,33 +81,29 @@
         {% block scripts %}{% endblock %}
     <main>
         <h2>Edit Contact Details</h2>
-
+        
+        <!-- Update Email -->
         <form method="POST">
-            <!-- Update Name -->
+            <label for="email">New Email:</label>
+            <input type="email" name="email" required>
+            <button type="submit">Update Email</button>
+        </form>
+        
+        <!-- Update Name -->
+        <form method="POST">
             <label for="first_name">First Name</label>
             <input type="text" id="first_name" name="first_name" value="{{ user['first_name'] }}" placeholder="Enter new first name">
-
             <label for="last_name">Last Name</label>
             <input type="text" id="last_name" name="last_name" value="{{ user['last_name'] }}" placeholder="Enter new last name">
 
             <button type="submit" name="update_name">Update Name</button>
-
-            <!-- Update Email -->
-            <form method="POST">
-                <label for="email">New Email:</label>
-                <input type="email" name="email" required>
-                <button type="submit">Update Email</button>
-            </form>
-
-            <!-- Change Password -->
-            <h2>Change Password</h2>
+        </form>
+        
+        <!-- change password -->
+        <form method="POST">
             <label for="new_password">New Password</label>
             <input type="password" id="new_password" name="new_password" placeholder="Enter new password">
-
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password">
-
-            <button type="submit" name="update_password">Update Password</button>
+            <button type="submit">Update password</button>
         </form>
     </main>
 

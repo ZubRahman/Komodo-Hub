@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}My Progress - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/progress.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="progress-container">
+    <h1>My Progress</h1>
+
+    <h2>Score Progression</h2>
+    <canvas id="scoreChart"></canvas>
+
+    <h2>All Recorded Scores</h2>
+    {% if scores %}
+      <ul>
+        {% for score, time in scores_data %}
+          <li>{{ time }} - Score: {{ score }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No scores recorded yet.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById("scoreChart").getContext("2d");
+
+    const scores = {{ scores | tojson }};
+    const timestamps = {{ timestamps | tojson }};
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: timestamps.map(time => new Date(time).toLocaleString()),
+        datasets: [{
+          label: "My Scores Over Time",
+          data: scores,
+          backgroundColor: "rgba(75, 192, 192, 0.5)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 2,
+          fill: true
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}
