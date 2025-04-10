@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/student.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="student-header">
+    <div class="container">
+        <h1>Student Dashboard</h1>
+        <p>Welcome back, {{ session.get('first_name', 'Student') }}! Manage your account, messages, and assignments.</p>
+    </div>
+</section>
+
+<section class="student-dashboard">
+    <div class="container">
+        <div class="dashboard-tabs">
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="account">Account Settings</button>
+                <button class="tab-btn" data-tab="messages">Messages</button>
+                <button class="tab-btn" data-tab="assignments">Assignments</button>
+                <button class="tab-btn" data-tab="game-scores">Game Scores</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Account Settings Tab -->
+                <div class="tab-pane active" id="account-tab">
+                    <div class="account-settings">
+                        <h2>Account Settings</h2>
+                        
+                        <form action="{{ url_for('update_student_account') }}" method="POST" class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name" value="{{ user.first_name if user else '' }}">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name" value="{{ user.last_name if user else '' }}">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" value="{{ user.email if user else '' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new_password">New Password (leave blank to keep current password)</label>
+                                <input type="password" id="new_password" name="new_password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm New Password</label>
+                                <input type="password" id="confirm_password" name="confirm_password">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Messages Tab -->
+                <div class="tab-pane" id="messages-tab">
+                    <div class="messages-section">
+                        <h2>Messages</h2>
+                        
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-envelope-open"></i>
+                            </div>
+                            <h3>No Messages Yet</h3>
+                            <p>You don't have any messages at the moment. When you receive messages, they will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Assignments Tab -->
+                <div class="tab-pane" id="assignments-tab">
+                    <div class="assignments-section">
+                        <h2>Assignments</h2>
+                        
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>No Assignments Yet</h3>
+                            <p>You don't have any assignments at the moment. When you receive assignments, they will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Scores Tab -->
+                <div class="tab-pane" id="game-scores-tab">
+                    <div class="game-scores-section">
+                        <h2>Your Game Scores</h2>
+                        
+                        {% if game_scores and game_scores|length > 0 %}
+                            <div class="score-summary">
+                                <div class="summary-card">
+                                    <div class="summary-value">{{ highest_score }}</div>
+                                    <div class="summary-label">Highest Score</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="summary-value">{{ average_score }}</div>
+                                    <div class="summary-label">Average Score</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="summary-value">{{ total_games }}</div>
+                                    <div class="summary-label">Games Played</div>
+                                </div>
+                            </div>
+                            
+                            <div class="score-history">
+                                <h3>Score History</h3>
+                                <div class="table-container">
+                                    <table class="score-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Game</th>
+                                                <th>Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for score in game_scores %}
+                                            <tr>
+                                                <td>{{ score.created_at }}</td>
+                                                <td>{{ score.game_type }}</td>
+                                                <td>{{ score.score }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="score-chart">
+                                <h3>Progress Chart</h3>
+                                <canvas id="scoreChart" width="400" height="200"></canvas>
+                            </div>
+                            
+                            <!-- Hidden data for chart -->
+                            <div id="chart-data" style="display: none;" 
+                                data-scores="{% for score in game_scores %}{{ score.score }}{% if not loop.last %},{% endif %}{% endfor %}"
+                                data-dates="{% for score in game_scores %}{{ score.created_at }}{% if not loop.last %},{% endif %}{% endfor %}">
+                            </div>
+                        {% else %}
+                            <div class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h3>No Game Scores Yet</h3>
+                                <p>You haven't played any games yet. Play Wordle or Quiz games to see your scores here!</p>
+                                <div class="game-links">
+                                    <a href="{{ url_for('komodo_wordle') }}" class="btn btn-primary">Play Wordle</a>
+                                    <a href="{{ url_for('komodo_quiz') }}" class="btn btn-primary">Play Quiz</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        var tabBtns = document.querySelectorAll('.tab-btn');
+        var tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons and panes
+                tabBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                tabPanes.forEach(function(p) {
+                    p.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding tab pane
+                var tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId + '-tab').classList.add('active');
+            });
+        });
+        
+        // Password confirmation check
+        var newPasswordInput = document.getElementById('new_password');
+        var confirmPasswordInput = document.getElementById('confirm_password');
+        var settingsForm = document.querySelector('.settings-form');
+        
+        if (settingsForm && newPasswordInput && confirmPasswordInput) {
+            settingsForm.addEventListener('submit', function(e) {
+                if (newPasswordInput.value && newPasswordInput.value !== confirmPasswordInput.value) {
+                    e.preventDefault();
+                    alert('Passwords do not match. Please try again.');
+                    confirmPasswordInput.focus();
+                }
+            });
+        }
+        
+        // Score Chart
+        var scoreChart = document.getElementById('scoreChart');
+        var chartData = document.getElementById('chart-data');
+        
+        if (scoreChart && chartData) {
+            var scoresStr = chartData.getAttribute('data-scores');
+            var datesStr = chartData.getAttribute('data-dates');
+            
+            if (scoresStr && datesStr) {
+                console.log("Chart data found:", scoresStr, datesStr);
+                
+                var scores = scoresStr.split(',').map(function(s) { return parseInt(s, 10); });
+                var dates = datesStr.split(',');
+                
+                // Reverse arrays to show chronological order
+                scores.reverse();
+                dates.reverse();
+                
+                console.log("Processed chart data:", scores, dates);
+                
+                // Create chart
+                var ctx = scoreChart.getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Game Scores',
+                            data: scores,
+                            backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                            borderColor: 'rgba(76, 175, 80, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(76, 175, 80, 1)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.log("No chart data found");
+            }
+        }
+    });
+</script>
+{% endblock %}

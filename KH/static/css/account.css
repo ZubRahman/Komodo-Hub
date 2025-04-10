@@ -1,0 +1,92 @@
+/* Account Page Styles */
+.account-header {
+  background-color: var(--primary-light);
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.account-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.account-header p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-color);
+}
+
+.account-section {
+  padding: 0 0 60px;
+}
+
+.account-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.account-card h2 {
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.account-info {
+  margin-bottom: 30px;
+}
+
+.account-info p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.account-actions .btn {
+  min-width: 200px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .account-header h1 {
+    font-size: 2rem;
+  }
+
+  .account-card {
+    padding: 20px;
+  }
+
+  .account-actions {
+    flex-direction: column;
+  }
+
+  .account-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-header {
+    padding: 40px 0;
+  }
+
+  .account-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .account-card h2 {
+    font-size: 1.5rem;
+  }
+}

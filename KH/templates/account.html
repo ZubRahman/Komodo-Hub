@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}My Account - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="account-header">
+    <div class="container">
+        <h1>My Account</h1>
+        <p>Manage your account settings and preferences</p>
+    </div>
+</section>
+
+<section class="account-section">
+    <div class="container">
+        <div class="account-card">
+            <h2>Account Overview</h2>
+            
+            <div class="account-info">
+                <p><strong>Email:</strong> {{ session.get('email') }}</p>
+                <p><strong>Account Type:</strong> {{ session.get('user_type', 'User').capitalize() }}</p>
+            </div>
+            
+            <div class="account-actions">
+                {% if session.get('user_type') == 'student' %}
+                <a href="{{ url_for('student') }}" class="btn btn-primary">Go to Student Dashboard</a>
+                {% elif session.get('user_type') == 'teacher' %}
+                <a href="{{ url_for('teacher') }}" class="btn btn-primary">Go to Teacher Dashboard</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

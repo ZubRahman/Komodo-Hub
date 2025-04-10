@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Animal Wordle - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wordle.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="wordle-header">
+    <div class="container">
+        <h1>Animal Wordle</h1>
+        <p>Guess the animal name in six tries or less. Each guess must be a valid 5-letter animal name.</p>
+    </div>
+</section>
+
+<section class="wordle-game">
+    <div class="container">
+        <div class="wordle-container">
+            <div class="wordle-instructions">
+                <h2>How to Play</h2>
+                <ul>
+                    <li>Each guess must be a 5-letter animal name</li>
+                    <li>The color of the tiles will change to show how close your guess was</li>
+                    <li><span class="example-tile correct">A</span> - The letter is in the word and in the correct spot</li>
+                    <li><span class="example-tile present">N</span> - The letter is in the word but in the wrong spot</li>
+                    <li><span class="example-tile absent">Z</span> - The letter is not in the word</li>
+                </ul>
+            </div>
+
+            <div class="wordle-board">
+                <div class="wordle-grid">
+                    {% for row in range(6) %}
+                        <div class="wordle-row">
+                            {% for col in range(5) %}
+                                <div class="wordle-cell" data-row="{{ row }}" data-col="{{ col }}"></div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="wordle-message" id="wordle-message"></div>
+
+                <div class="wordle-input">
+                    <input type="text" id="wordle-guess" maxlength="5" placeholder="Enter 5-letter animal" autocomplete="off">
+                    <button id="wordle-submit" class="btn btn-primary">Submit</button>
+                    <button id="wordle-reset" class="btn btn-secondary">New Game</button>
+                </div>
+
+                <div class="wordle-keyboard" id="wordle-keyboard">
+                    <div class="keyboard-row">
+                        <button class="keyboard-key" data-key="Q">Q</button>
+                        <button class="keyboard-key" data-key="W">W</button>
+                        <button class="keyboard-key" data-key="E">E</button>
+                        <button class="keyboard-key" data-key="R">R</button>
+                        <button class="keyboard-key" data-key="T">T</button>
+                        <button class="keyboard-key" data-key="Y">Y</button>
+                        <button class="keyboard-key" data-key="U">U</button>
+                        <button class="keyboard-key" data-key="I">I</button>
+                        <button class="keyboard-key" data-key="O">O</button>
+                        <button class="keyboard-key" data-key="P">P</button>
+                    </div>
+                    <div class="keyboard-row">
+                        <div class="keyboard-spacer half"></div>
+                        <button class="keyboard-key" data-key="A">A</button>
+                        <button class="keyboard-key" data-key="S">S</button>
+                        <button class="keyboard-key" data-key="D">D</button>
+                        <button class="keyboard-key" data-key="F">F</button>
+                        <button class="keyboard-key" data-key="G">G</button>
+                        <button class="keyboard-key" data-key="H">H</button>
+                        <button class="keyboard-key" data-key="J">J</button>
+                        <button class="keyboard-key" data-key="K">K</button>
+                        <button class="keyboard-key" data-key="L">L</button>
+                        <div class="keyboard-spacer half"></div>
+                    </div>
+                    <div class="keyboard-row">
+                        <button class="keyboard-key wide" data-key="ENTER">ENTER</button>
+                        <button class="keyboard-key" data-key="Z">Z</button>
+                        <button class="keyboard-key" data-key="X">X</button>
+                        <button class="keyboard-key" data-key="C">C</button>
+                        <button class="keyboard-key" data-key="V">V</button>
+                        <button class="keyboard-key" data-key="B">B</button>
+                        <button class="keyboard-key" data-key="N">N</button>
+                        <button class="keyboard-key" data-key="M">M</button>
+                        <button class="keyboard-key wide" data-key="BACK">⌫</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/wordle.js') }}"></script>
+{% endblock %}

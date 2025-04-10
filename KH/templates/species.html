@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Endangered Species - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/species.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="species-header">
+    <div class="container">
+        <h1>Endangered Species</h1>
+        <p>Learn about the world's most vulnerable wildlife and the conservation efforts to protect them.</p>
+    </div>
+</section>
+
+<section class="species-content">
+    <div class="container">
+        <div class="species-grid">
+            <div class="species-card" id="komodo">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/komodo-dragon.png') }}" alt="Komodo Dragon">
+                    <span class="species-status status-vulnerable">Vulnerable</span>
+                </div>
+                <div class="species-content">
+                    <h3>Komodo Dragon</h3>
+                    <p>The largest living lizard species, native to the Indonesian islands of Komodo, Rinca, Flores, and Gili Motang.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Varanus komodoensis</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>Approximately 3,000-4,000</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>Tropical savanna forests and grasslands</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Habitat loss, poaching, natural disasters</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="species-card" id="panda">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/gaint-panda.png') }}" alt="Giant Panda">
+                    <span class="species-status status-vulnerable">Vulnerable</span>
+                </div>
+                <div class="species-content">
+                    <h3>Giant Panda</h3>
+                    <p>The giant panda is a bear native to China, known for its distinctive black and white coat and specialized diet consisting almost entirely of bamboo.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Ailuropoda melanoleuca</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>Approximately 1,800 in the wild</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>Temperate forests with dense bamboo undergrowth</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Habitat fragmentation, limited food resources</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="species-card" id="tiger">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/sumatran-tiger.png') }}" alt="Sumatran Tiger">
+                    <span class="species-status status-critical">Critically Endangered</span>
+                </div>
+                <div class="species-content">
+                    <h3>Sumatran Tiger</h3>
+                    <p>The Sumatran tiger is a tiger subspecies native to the Indonesian island of Sumatra and is the smallest of all tiger subspecies.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Panthera tigris sumatrae</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>Fewer than 400 individuals</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>Tropical rainforests and peat swamp forests</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Poaching, habitat loss due to palm oil plantations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="species-card" id="rhino">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/black-rhino.png') }}" alt="Black Rhino">
+                    <span class="species-status status-critical">Critically Endangered</span>
+                </div>
+                <div class="species-content">
+                    <h3>Black Rhinoceros</h3>
+                    <p>The black rhinoceros is a species of rhinoceros native to eastern and southern Africa, distinguished by its hooked upper lip.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Diceros bicornis</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>Approximately 5,500 individuals</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>Semi-desert savanna, woodlands, and forests</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Poaching for horns, habitat loss</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="species-card" id="turtle">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/sea-turtle.png') }}" alt="Sea Turtle">
+                    <span class="species-status status-critical">Critically Endangered</span>
+                </div>
+                <div class="species-content">
+                    <h3>Hawksbill Sea Turtle</h3>
+                    <p>The hawksbill sea turtle is a critically endangered sea turtle belonging to the family Cheloniidae, known for its beautiful shell.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Eretmochelys imbricata</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>Unknown, but severely depleted</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>Coral reefs and coastal waters in tropical oceans</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Illegal wildlife trade, bycatch in fishing gear, habitat destruction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="species-card" id="whale">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/blue-whale.png') }}" alt="Blue Whale">
+                    <span class="species-status status-endangered">Endangered</span>
+                </div>
+                <div class="species-content">
+                    <h3>Blue Whale</h3>
+                    <p>The blue whale is a marine mammal and the largest animal known to have ever existed, reaching lengths of up to 30 meters.</p>
+                    <div class="species-details">
+                        <div class="species-detail">
+                            <strong>Scientific Name:</strong> <span>Balaenoptera musculus</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Population:</strong> <span>10,000-25,000 worldwide</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Habitat:</strong> <span>All major oceans, preferring deep waters</span>
+                        </div>
+                        <div class="species-detail">
+                            <strong>Threats:</strong> <span>Ship strikes, entanglement in fishing gear, ocean noise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sighting-report">
+    <div class="container">
+        <h2>Report a Wildlife Sighting</h2>
+        <p>Have you spotted an endangered species in the wild? Your sighting reports help us track and protect these amazing animals.</p>
+        <a href="{{ url_for('reports_sightings') }}" class="btn btn-primary">Report a Sighting</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Search functionality removed as requested
+    });
+</script>
+{% endblock %}

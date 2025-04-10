@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Animal Conservation Quiz - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="quiz-header">
+    <div class="container">
+        <h1>Animal Conservation Quiz</h1>
+        <p>Test your knowledge about endangered animals and wildlife conservation with our interactive quiz.</p>
+    </div>
+</section>
+
+<section class="quiz-game">
+    <div class="container">
+        <div class="quiz-container">
+            <div class="quiz-card">
+                <div id="quiz-start-screen" class="quiz-screen active">
+                    <h2>Ready to Test Your Knowledge?</h2>
+                    <p>This quiz contains 10 questions about endangered animals and conservation efforts. See how much you know about wildlife protection!</p>
+                    
+                    <div class="quiz-rules">
+                        <h3>Quiz Rules</h3>
+                        <ul>
+                            <li>Each question has 4 possible answers</li>
+                            <li>Select the answer you think is correct</li>
+                            <li>You'll get immediate feedback on your answer</li>
+                            <li>Your final score will be displayed at the end</li>
+                        </ul>
+                    </div>
+                    
+                    <button id="start-quiz-btn" class="btn btn-primary">Start Quiz</button>
+                </div>
+                
+                <div id="quiz-question-screen" class="quiz-screen">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-text">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+                        <div class="quiz-progress-bar">
+                            <div id="progress-fill" class="quiz-progress-fill" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="question-container" class="question-container">
+                        <h2 id="question-text">Question text will appear here</h2>
+                        
+                        <div class="answer-options">
+                            <button class="answer-option" data-index="0">Option 1</button>
+                            <button class="answer-option" data-index="1">Option 2</button>
+                            <button class="answer-option" data-index="2">Option 3</button>
+                            <button class="answer-option" data-index="3">Option 4</button>
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-container" class="feedback-container">
+                        <div id="feedback-message" class="feedback-message"></div>
+                        <button id="next-question-btn" class="btn btn-primary">Next Question</button>
+                    </div>
+                </div>
+                
+                <div id="quiz-results-screen" class="quiz-screen">
+                    <h2>Quiz Complete!</h2>
+                    
+                    <div class="results-score">
+                        <div class="score-circle">
+                            <span id="final-score">0</span>/<span id="max-score">10</span>
+                        </div>
+                        <div id="score-message" class="score-message">Great job!</div>
+                    </div>
+                    
+                    <div class="results-details">
+                        <p>You answered <span id="correct-answers">0</span> out of <span id="total-answers">10</span> questions correctly.</p>
+                        <p id="conservation-message">Every bit of knowledge helps in the conservation of endangered species!</p>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button id="retry-quiz-btn" class="btn btn-secondary">Try Again</button>
+                        <a href="{{ url_for('species') }}" class="btn btn-primary">Learn More About Endangered Species</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Komodo Hub - Home{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Welcome to Komodo Hub</h1>
+            <p>Dedicated to the conservation of Komodo dragons and other endangered species.</p>
+            <a href="{{ url_for('about') }}" class="btn btn-primary">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Species Section -->
+<section class="featured-species">
+        <div class="welcome-text">
+    <p>Welcome to the frontlines of wildlife conservation! At Komodo Hub, we're passionate defenders of Earth's most magnificent yet vulnerable creatures. From the ancient Komodo dragons roaming Indonesian islands to the elusive snow leopards of the Himalayas, we're fighting to preserve nature's living treasures. Our global network of scientists, educators, and community leaders works tirelessly to turn the tide against extinction. Discover the extraordinary animals below, each with their own remarkable story of survival, and join us in ensuring these incredible species thrive for generations to come. Together, we can transform concern into conservation success!</p>
+</div>
+    <div class="container">
+        <h2>Featured Endangered Species</h2>
+        <div class="species-grid">
+            <div class="species-card">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/komodo-dragon.png') }}" alt="Komodo Dragon">
+                </div>
+                <div class="species-content">
+                    <h3>Komodo Dragon</h3>
+                    <p>The largest living lizard species, native to Indonesian islands.</p>
+                    <a href="{{ url_for('species') }}#komodo" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="species-card">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/gaint-panda.png') }}" alt="Giant Panda">
+                </div>
+                <div class="species-content">
+                    <h3>Giant Panda</h3>
+                    <p>A bear native to China, known for its distinctive black and white coat.</p>
+                    <a href="{{ url_for('species') }}#panda" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="species-card">
+                <div class="species-image">
+                    <img src="{{ url_for('static', filename='images/sumatran-tiger.png') }}" alt="Sumatran Tiger">
+                </div>
+                <div class="species-content">
+                    <h3>Sumatran Tiger</h3>
+                    <p>A tiger subspecies native to the Indonesian island of Sumatra.</p>
+                    <a href="{{ url_for('species') }}#tiger" class="learn-more">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Conservation Efforts Section -->
+<section class="conservation-efforts">
+    <div class="container">
+        <h2>Our Conservation Efforts</h2>
+        <div class="efforts-grid">
+            <div class="effort-card">
+                <div class="effort-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3>Habitat Protection</h3>
+                <p>We work to protect and restore natural habitats for endangered species.</p>
+            </div>
+            
+            <div class="effort-card">
+                <div class="effort-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Community Engagement</h3>
+                <p>Engaging local communities in conservation efforts and sustainable practices.</p>
+            </div>
+            
+            <div class="effort-card">
+                <div class="effort-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Research & Education</h3>
+                <p>Conducting research and providing educational resources about endangered species.</p>
+            </div>
+            
+            <div class="effort-card">
+                <div class="effort-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Rescue & Rehabilitation</h3>
+                <p>Rescuing and rehabilitating injured or orphaned animals for release back into the wild.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

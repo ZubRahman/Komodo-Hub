@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Educational Games - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/games.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="games-header">
+    <div class="container">
+        <h1>Educational Games</h1>
+        <p>Learn about endangered species and conservation through our interactive educational games.</p>
+    </div>
+</section>
+
+<section class="games-section">
+    <div class="container">
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="{{ url_for('static', filename='images/wordle.png') }}" alt="Animal Wordle">
+                </div>
+                <div class="game-content">
+                    <h2>Animal Wordle</h2>
+                    <p>Test your knowledge of endangered animal names with our Wordle-style word guessing game. Try to guess the animal name in six attempts or less!</p>
+                    <div class="game-details">
+                        <span class="game-age">Ages 8+</span>
+                        <span class="game-difficulty">Moderate</span>
+                    </div>
+                    <a href="{{ url_for('komodo_wordle') }}" class="btn btn-primary">Play Now</a>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="{{ url_for('static', filename='images/quiz.png') }}" alt="Animal Conservation Quiz">
+                </div>
+                <div class="game-content">
+                    <h2>Animal Conservation Quiz</h2>
+                    <p>Test your knowledge about endangered animals and wildlife conservation with our interactive quiz. Learn fascinating facts about animals and their habitats.</p>
+                    <div class="game-details">
+                        <span class="game-age">Ages 10+</span>
+                        <span class="game-difficulty">Challenging</span>
+                    </div>
+                    <a href="{{ url_for('komodo_quiz') }}" class="btn btn-primary">Play Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wordle Game
+        const animalWords = ['PANDA', 'TIGER', 'RHINO', 'KOALA', 'WHALE', 'EAGLE', 'SHARK', 'LEMUR', 'SLOTH', 'OTTER'];
+        let wordleWord = animalWords[Math.floor(Math.random() * animalWords.length)];
+        let wordleCurrentRow = 0;
+        let wordleGameOver = false;
+        
+        const wordleGuessInput = document.getElementById('wordle-guess');
+        const wordleSubmitBtn = document.getElementById('wordle-submit');
+        const wordleResetBtn = document.getElementById('wordle-reset');
+        const wordleMessage = document.getElementById('wordle-message');
+        
+        if (wordleSubmitBtn && wordleResetBtn) {
+            wordleSubmitBtn.addEventListener('click', submitWordleGuess);
+            wordleResetBtn.addEventListener('click', resetWordleGame);
+            
+            if (wordleGuessInput) {
+                wordleGuessInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        submitWordleGuess();
+                    }
+                });
+            }
+        }
+        
+        function submitWordleGuess() {
+            if (wordleGameOver) return;
+            
+            const guess = wordleGuessInput.value.toUpperCase();
+            
+            if (guess.length !== 5) {
+                showWordleMessage('Please enter a 5-letter word', 'error');
+                return;
+            }
+            
+            // Fill in the current row
+            for (let i = 0; i < 5; i++) {
+                const cell = document.querySelector(`.wordle-cell[data-row="${wordleCurrentRow}"][data-col="${i}"]`);
+                if (cell) {
+                    cell.textContent = guess[i];
+                    
+                    // Check letter
+                    if (guess[i] === wordleWord[i]) {
+                        cell.classList.add('correct');
+                    } else if (wordleWord.includes(guess[i])) {
+                        cell.classList.add('present');
+                    } else {
+                        cell.classList.add('absent');
+                    }
+                }
+            }
+            
+            // Check if won
+            if (guess === wordleWord) {
+                showWordleMessage('Congratulations! You guessed the animal!', 'success');
+                wordleGameOver = true;
+                return;
+            }
+            
+            // Move to next row or end game
+            wordleCurrentRow++;
+            if (wordleCurrentRow >= 6) {
+                showWordleMessage(`Game over! The animal was ${wordleWord}`, 'error');
+                wordleGameOver = true;
+            }
+            
+            // Clear input
+            if (wordleGuessInput) {
+                wordleGuessInput.value = '';
+            }
+        }
+        
+        function showWordleMessage(message, type) {
+            if (wordleMessage) {
+                wordleMessage.textContent = message;
+                wordleMessage.className = 'wordle-message';
+                wordleMessage.classList.add(type);
+            }
+        }
+        
+        function resetWordleGame() {
+            // Clear grid
+            document.querySelectorAll('.wordle-cell').forEach(cell => {
+                cell.textContent = '';
+                cell.className = 'wordle-cell';
+            });
+            
+            // Reset game state
+            wordleWord = animalWords[Math.floor(Math.random() * animalWords.length)];
+            wordleCurrentRow = 0;
+            wordleGameOver = false;
+            if (wordleGuessInput) {
+                wordleGuessInput.value = '';
+            }
+            if (wordleMessage) {
+                wordleMessage.textContent = '';
+                wordleMessage.className = 'wordle-message';
+            }
+        }
+    });
+</script>
+{% endblock %}

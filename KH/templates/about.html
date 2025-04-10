@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="container">
+        <div class="about-hero-content">
+            <h1>About Komodo Hub</h1>
+            <p>Dedicated to the conservation of endangered species through education, awareness, and action.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="about-mission">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Mission</h2>
+        </div>
+        <div class="mission-content">
+            <div class="mission-text">
+                <p>At Komodo Hub, our mission is to protect endangered species and their habitats through community-powered conservation efforts. We believe that by engaging students, teachers, and communities, we can create a sustainable future for all species and preserve biodiversity for generations to come.</p>
+                
+                <p>We are dedicated to reversing the alarming trend of species extinction through a comprehensive approach that combines scientific research, community engagement, and policy advocacy. Our work spans across multiple ecosystems, with a special focus on critically endangered species like the Komodo dragon, which serves as our flagship species and inspiration.</p>
+                
+                <p>Through our programs, we aim to create a world where humans and wildlife can coexist harmoniously, where ecosystems are healthy and resilient, and where the intrinsic value of all species is recognized and respected.</p>
+                
+                <div class="mission-pillars">
+                    <div class="mission-pillar">
+                        <div class="pillar-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3>Education</h3>
+                            <p>We develop and implement comprehensive educational programs for schools, universities, and communities to foster understanding of biodiversity, conservation challenges, and sustainable practices. Our curriculum resources, workshops, and field experiences are designed to inspire the next generation of conservation leaders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-pillar">
+                        <div class="pillar-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3>Awareness</h3>
+                            <p>We conduct awareness campaigns, public events, and digital outreach to highlight the critical state of endangered species and their ecosystems. By sharing compelling stories and scientific data, we aim to change perceptions and behaviors that impact wildlife. Our awareness initiatives reach millions of people annually through various platforms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-pillar">
+                        <div class="pillar-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3>Action</h3>
+                            <p>We implement direct conservation projects including habitat restoration, anti-poaching initiatives, and species monitoring programs. We also advocate for stronger wildlife protection policies at local, national, and international levels. Our community-based conservation model ensures that local stakeholders are empowered to become stewards of their natural heritage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-pillar">
+                        <div class="pillar-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3>Research</h3>
+                            <p>We conduct and support scientific research to better understand endangered species, their habitats, and the threats they face. Our research informs evidence-based conservation strategies and contributes to the global body of knowledge on biodiversity conservation. We collaborate with leading academic institutions and research organizations worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-image">
+                <img src="{{ url_for('static', filename='images/save-animals.png') }}" alt="Conservation illustration showing hands holding wildlife and nature">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="about-partners">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Partners</h2>
+            <p>We collaborate with leading organizations and institutions to maximize our conservation impact.</p>
+        </div>
+        
+        <div class="partners-grid">
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="{{ url_for('static', filename='images/wwf.png') }}" alt="World Wildlife Fund">
+                </div>
+                <div class="partner-info">
+                    <h3>World Wildlife Fund</h3>
+                    <p>Working together to protect endangered species and their habitats through conservation initiatives and policy advocacy.</p>
+                </div>
+            </div>
+            
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="{{ url_for('static', filename='images/GC.png') }}" alt="Global Conservation">
+                </div>
+                <div class="partner-info">
+                    <h3>Global Conservation</h3>
+                    <p>Partnering on habitat protection and restoration projects in critical ecosystems around the world.</p>
+                </div>
+            </div>
+            
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="{{ url_for('static', filename='images/eco.jpg') }}" alt="EcoSystems">
+                </div>
+                <div class="partner-info">
+                    <h3>EcoSystems</h3>
+                    <p>Collaborating on innovative approaches to ecosystem management and sustainable development.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

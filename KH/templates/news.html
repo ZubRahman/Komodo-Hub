@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Conservation News - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/news.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="news-header">
+    <div class="container">
+        <h1>Conservation News</h1>
+        <p>Stay updated with the latest news, discoveries, and stories about endangered species and conservation efforts around the world.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="featured-news">
+            <div class="featured-news-card">
+                <div class="featured-news-image">
+                    <img src="{{ url_for('static', filename='images/news1.jpeg') }}" alt="Global Conservation Summit participants gathered for a group photo">
+                </div>
+                <div class="featured-news-content">
+                    <span class="featured-label">Featured</span>
+                    <h2>Global Conservation Summit Announces New Initiatives to Protect Endangered Species</h2>
+                    <span class="news-date">June 5, 2025</span>
+                    <p>World leaders and conservation experts gathered at the annual Global Conservation Summit to announce groundbreaking initiatives aimed at protecting endangered species and their habitats.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/sumatran-tiger.png') }}" alt="Sumatran tiger resting in bamboo forest">
+                    <span class="news-category">Conservation</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">May 28, 2025</span>
+                    <h2>New Protected Area Established for Sumatran Tigers</h2>
+                    <p>A new 100,000-hectare protected area has been established in Indonesia to help save the critically endangered Sumatran tiger from extinction.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">JD</div>
+                            <span class="author-name">Jane Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/news3.jpg') }}" alt="Newly discovered frog species in Amazon rainforest">
+                    <span class="news-category">Discoveries</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">May 22, 2025</span>
+                    <h2>Scientists Discover New Species of Frog in Amazon Rainforest</h2>
+                    <p>Researchers have discovered a previously unknown species of frog in the Amazon rainforest, highlighting the importance of biodiversity conservation.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">MS</div>
+                            <span class="author-name">Michael Smith</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/news4.jpg') }}" alt="Educational program illustration with graduation cap and learning symbols" class="contain-image">
+                    <span class="news-category">Education</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">May 15, 2025</span>
+                    <h2>New Educational Program Teaches Children About Conservation</h2>
+                    <p>A new educational program has been launched to teach children about the importance of conservation and how they can help protect endangered species.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">AL</div>
+                            <span class="author-name">Amanda Lee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/news5.jpg') }}" alt="World Wildlife Day illustration with animals on a globe" class="contain-image">
+                    <span class="news-category">Events</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">May 10, 2025</span>
+                    <h2>World Wildlife Day Celebrations Highlight Conservation Efforts</h2>
+                    <p>Communities around the world celebrated World Wildlife Day with events and activities aimed at raising awareness about conservation efforts.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">RJ</div>
+                            <span class="author-name">Robert Johnson</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/news6.png') }}" alt="Underwater coral reef restoration project">
+                    <span class="news-category">Conservation</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">May 5, 2025</span>
+                    <h2>Coral Reef Restoration Project Shows Promising Results</h2>
+                    <p>A coral reef restoration project in the Great Barrier Reef has shown promising results, with new coral growth and increased marine biodiversity.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">EW</div>
+                            <span class="author-name">Emma Wilson</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ url_for('static', filename='images/news7.webp') }}" alt="Blue whale surfacing with water spout off California coast">
+                    <span class="news-category">Discoveries</span>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-date">April 28, 2025</span>
+                    <h2>Rare Sighting of Blue Whale Pod Off California Coast</h2>
+                    <p>Marine biologists have reported a rare sighting of a pod of blue whales off the coast of California, providing valuable data for conservation efforts.</p>
+                    <div class="news-card-footer">
+                        <div class="news-author">
+                            <div class="author-avatar">DP</div>
+                            <span class="author-name">David Park</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Any future JavaScript for the news page can go here
+    });
+</script>
+{% endblock %}

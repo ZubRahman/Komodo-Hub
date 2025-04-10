@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}Report Sighting - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/report-sighting.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="report-header">
+    <div class="container">
+        <h1>Report a Wildlife Sighting</h1>
+        <p>Have you spotted an endangered species in the wild? Your sighting report can help our conservation efforts by providing valuable data on species distribution and habitat use.</p>
+    </div>
+</section>
+
+<section class="report-form-section">
+    <div class="container">
+        <div class="report-form-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form action="{{ url_for('reports_sightings') }}" method="POST" enctype="multipart/form-data" class="report-form">
+                <div class="form-section">
+                    <h2>Species Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="species">Species Name *</label>
+                        <select id="species" name="species" required>
+                            <option value="">Select a species</option>
+                            <option value="komodo_dragon">Komodo Dragon</option>
+                            <option value="giant_panda">Giant Panda</option>
+                            <option value="sumatran_tiger">Sumatran Tiger</option>
+                            <option value="black_rhino">Black Rhinoceros</option>
+                            <option value="hawksbill_turtle">Hawksbill Sea Turtle</option>
+                            <option value="blue_whale">Blue Whale</option>
+                            <option value="orangutan">Orangutan</option>
+                            <option value="snow_leopard">Snow Leopard</option>
+                            <option value="other">Other (please specify)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="other-species-group" style="display: none;">
+                        <label for="other_species">Other Species Name *</label>
+                        <input type="text" id="other_species" name="other_species">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="count">Number of Individuals *</label>
+                        <input type="number" id="count" name="count" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="behavior">Observed Behavior</label>
+                        <textarea id="behavior" name="behavior" rows="3" placeholder="Describe what the animal(s) were doing when observed"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Location Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="location">Location Name *</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Komodo National Park, Rinca Island" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" id="latitude" name="latitude" placeholder="e.g., -8.5456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" id="longitude" name="longitude" placeholder="e.g., 119.4365">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="habitat">Habitat Type *</label>
+                        <select id="habitat" name="habitat" required>
+                            <option value="">Select habitat type</option>
+                            <option value="forest">Forest</option>
+                            <option value="grassland">Grassland</option>
+                            <option value="wetland">Wetland</option>
+                            <option value="coastal">Coastal</option>
+                            <option value="marine">Marine</option>
+                            <option value="mountain">Mountain</option>
+                            <option value="desert">Desert</option>
+                            <option value="urban">Urban/Suburban</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Date and Time</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date of Sighting *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time">Time of Sighting</label>
+                            <input type="time" id="time" name="time">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Photo Upload</h2>
+                    
+                    <div class="file-upload">
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                        <label for="photo" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Drag & drop a photo here or click to browse</span>
+                            <span class="file-info">Maximum file size: 5MB. Accepted formats: JPG, PNG, GIF.</span>
+                        </label>
+                    </div>
+                    
+                    <div class="photo-preview" id="photo-preview"></div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Your Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reporter_name">Your Name *</label>
+                            <input type="text" id="reporter_name" name="reporter_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reporter_email">Your Email *</label>
+                            <input type="email" id="reporter_email" name="reporter_email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reporter_phone">Phone Number</label>
+                        <input type="tel" id="reporter_phone" name="reporter_phone">
+                    </div>
+                    
+                    <div class="form-group terms-checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I consent to Komodo Hub storing and using this information for conservation purposes *</label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Sighting Report</button>
+                    <button type="reset" class="btn btn-secondary">Reset Form</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="report-sidebar">
+            <div class="sidebar-card">
+                <h3>Why Report Sightings?</h3>
+                <p>Your wildlife sighting reports help us track and monitor endangered species populations, understand their distribution patterns, and develop effective conservation strategies.</p>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>Tips for Reporting</h3>
+                <ul>
+                    <li>Be as accurate as possible with location details</li>
+                    <li>Include photos if available (but don't disturb the animals)</li>
+                    <li>Note the animal's behavior and surroundings</li>
+                    <li>Report sightings as soon as possible after observation</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>Safety First</h3>
+                <p>Always maintain a safe distance from wildlife. Never approach, touch, or feed wild animals. Your safety and the animal's wellbeing are top priorities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle "Other" species selection
+        const speciesSelect = document.getElementById('species');
+        const otherSpeciesGroup = document.getElementById('other-species-group');
+        const otherSpeciesInput = document.getElementById('other_species');
+        
+        speciesSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                otherSpeciesGroup.style.display = 'block';
+                otherSpeciesInput.setAttribute('required', 'required');
+            } else {
+                otherSpeciesGroup.style.display = 'none';
+                otherSpeciesInput.removeAttribute('required');
+            }
+        });
+        
+        // Handle file upload preview
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photo-preview');
+        
+        photoInput.addEventListener('change', function() {
+            photoPreview.innerHTML = '';
+            
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    const img = document.createElement('img');
+                    img.className = 'preview-image';
+                    img.src = e.target.result;
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-image';
+                    removeBtn.innerHTML = '×';
+                    removeBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        photoInput.value = '';
+                        photoPreview.innerHTML = '';
+                    });
+                    
+                    previewItem.appendChild(img);
+                    previewItem.appendChild(removeBtn);
+                    photoPreview.appendChild(previewItem);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}Donate - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/donate.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="donate-page-header">
+    <div class="container">
+        <h1>Support Endangered Species Conservation</h1>
+        <p>Your donation helps protect wildlife and their habitats around the world</p>
+    </div>
+</section>
+
+<section class="donate-page-content">
+    <div class="container">
+        <div class="donate-form-container">
+            <form id="donate-form" class="donate-body">
+                <div class="donate-section">
+                    <h3>Choose Your Donation Amount</h3>
+                    <div class="donate-tiers">
+                        <div class="donate-tier">
+                            <input type="radio" id="tier-5" name="donation-amount" value="5">
+                            <label for="tier-5">
+                                <span class="donate-tier-amount">£5</span>
+                                <span class="donate-tier-description">One-time donation</span>
+                            </label>
+                        </div>
+                        
+                        <div class="donate-tier">
+                            <input type="radio" id="tier-10" name="donation-amount" value="10" checked>
+                            <label for="tier-10">
+                                <span class="donate-tier-amount">£10</span>
+                                <span class="donate-tier-description">One-time donation</span>
+                            </label>
+                        </div>
+                        
+                        <div class="donate-tier">
+                            <input type="radio" id="tier-25" name="donation-amount" value="25">
+                            <label for="tier-25">
+                                <span class="donate-tier-amount">£25</span>
+                                <span class="donate-tier-description">One-time donation</span>
+                            </label>
+                        </div>
+                        
+                        <div class="donate-tier">
+                            <input type="radio" id="tier-custom" name="donation-amount" value="custom">
+                            <label for="tier-custom">
+                                <span class="donate-tier-amount">Custom</span>
+                                <span class="donate-tier-description">Choose your amount</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="custom-amount" class="custom-amount">
+                        <div class="custom-amount-input">
+                            <span>£</span>
+                            <input type="number" id="custom-amount-input" min="1" step="1" placeholder="Enter amount">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="donate-section">
+                    <h3>Select Payment Method</h3>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="radio" id="payment-card" name="payment-method" value="card" checked>
+                            <label for="payment-card">
+                                <span class="payment-option-icon"><i class="fas fa-credit-card"></i></span>
+                                <span class="payment-option-text">Credit/Debit Card</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="card-details" class="card-details active">
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Cardholder Name</label>
+                            <input type="text" id="card-name" placeholder="John Doe">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">Expiry Date</label>
+                                <input type="text" id="card-expiry" placeholder="MM/YY">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-cvc">CVC</label>
+                                <input type="text" id="card-cvc" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="donate-impact">
+                    <h3>Your Impact</h3>
+                    <p>Your donation will directly support our conservation efforts:</p>
+                    <ul class="donate-impact-list">
+                        <li>Protecting endangered species and their habitats</li>
+                        <li>Supporting educational programs for students and communities</li>
+                        <li>Funding research and monitoring of threatened species</li>
+                        <li>Enabling rapid response to conservation emergencies</li>
+                    </ul>
+                </div>
+                
+                <div class="donate-footer">
+                    <div class="donate-footer-text">
+                        <p>Donations are securely processed. Komodo Hub is a registered charity.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary donate-button-large">Donate Now</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="donate-sidebar">
+            <div class="sidebar-card">
+                <h3>Why Donate?</h3>
+                <p>Your donation makes a real difference in our fight to protect endangered species. Every contribution, no matter the size, helps us continue our vital conservation work.</p>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>How We Use Your Donation</h3>
+                <ul>
+                    <li>80% directly funds conservation programs</li>
+                    <li>15% supports educational initiatives</li>
+                    <li>5% covers administrative costs</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card testimonial">
+                <p>"Supporting Komodo Hub has been one of the most rewarding experiences. Knowing that my contribution is helping save endangered species gives me hope for the future."</p>
+                <div class="testimonial-author">- Sarah J., Monthly Donor</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Thank You Modal (hidden by default) -->
+<div id="thank-you-modal" class="thank-you-modal">
+    <div class="thank-you-modal-content">
+        <span id="thank-you-close" class="thank-you-close">&times;</span>
+        
+        <div class="thank-you-container">
+            <div class="thank-you-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            
+            <h2 class="thank-you-title">Thank You for Your Donation!</h2>
+            
+            <p class="thank-you-message">
+                Your generous contribution will help protect endangered species and their habitats around the world. Together, we can make a difference.
+            </p>
+            
+            <div class="thank-you-details">
+                <div class="thank-you-detail">
+                    <span>Donation Amount:</span>
+                    <span id="donation-amount-display">£10</span>
+                </div>
+                <div class="thank-you-detail">
+                    <span>Date:</span>
+                    <span id="donation-date-display">June 5, 2025</span>
+                </div>
+                <div class="thank-you-detail">
+                    <span>Donation ID:</span>
+                    <span id="donation-id-display">DON-123456</span>
+                </div>
+            </div>
+            
+            <button id="close-thank-you" class="btn btn-primary">Close</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Get DOM elements
+  const donateForm = document.getElementById("donate-form");
+  const thankYouModal = document.getElementById("thank-you-modal");
+  const thankYouClose = document.getElementById("thank-you-close");
+  const closeThankYou = document.getElementById("close-thank-you");
+
+  // Donation amount elements
+  const customAmountContainer = document.getElementById("custom-amount");
+  const customAmountInput = document.getElementById("custom-amount-input");
+  const donationAmountRadios = document.querySelectorAll('input[name="donation-amount"]');
+  const donationAmountDisplay = document.getElementById("donation-amount-display");
+
+  // Payment method elements
+  const cardDetails = document.getElementById("card-details");
+  const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
+
+  // Handle custom amount toggle
+  if (donationAmountRadios && customAmountContainer) {
+    donationAmountRadios.forEach((radio) => {
+      radio.addEventListener("change", function () {
+        if (this.value === "custom") {
+          customAmountContainer.classList.add("active");
+          customAmountInput.focus();
+        } else {
+          customAmountContainer.classList.remove("active");
+        }
+      });
+    });
+  }
+
+  // Handle payment method toggle
+  if (paymentMethodRadios && cardDetails) {
+    paymentMethodRadios.forEach((radio) => {
+      radio.addEventListener("change", function () {
+        if (this.value === "card") {
+          cardDetails.classList.add("active");
+        } else {
+          cardDetails.classList.remove("active");
+        }
+      });
+    });
+  }
+
+  // Handle form submission
+  if (donateForm) {
+    donateForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Get selected amount
+      let amount = "£10"; // Default amount
+      const selectedAmount = document.querySelector('input[name="donation-amount"]:checked');
+
+      if (selectedAmount) {
+        if (selectedAmount.value === "custom") {
+          amount = "£" + (customAmountInput.value || "10");
+        } else {
+          amount = "£" + selectedAmount.value;
+        }
+      }
+
+      // Set amount in thank you message
+      if (donationAmountDisplay) {
+        donationAmountDisplay.textContent = amount;
+      }
+
+      // Set current date
+      const dateDisplay = document.getElementById("donation-date-display");
+      if (dateDisplay) {
+        const now = new Date();
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        dateDisplay.textContent = now.toLocaleDateString("en-GB", options);
+      }
+
+      // Generate random donation ID
+      const donationIdDisplay = document.getElementById("donation-id-display");
+      if (donationIdDisplay) {
+        const randomId = "DON-" + Math.floor(100000 + Math.random() * 900000);
+        donationIdDisplay.textContent = randomId;
+      }
+
+      // Show thank you modal
+      if (thankYouModal) {
+        thankYouModal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      }
+    });
+  }
+
+  // Close thank you modal
+  if (thankYouClose) {
+    thankYouClose.addEventListener("click", () => {
+      thankYouModal.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    });
+  }
+
+  if (closeThankYou) {
+    closeThankYou.addEventListener("click", () => {
+      thankYouModal.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    });
+  }
+
+  // Close modal when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === thankYouModal) {
+      thankYouModal.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    }
+  });
+});
+</script>
+{% endblock %}

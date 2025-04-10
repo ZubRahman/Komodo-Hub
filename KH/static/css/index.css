@@ -1,0 +1,273 @@
+/* Hero Section */
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/home-background.png");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+  margin-bottom: 60px;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Welcome Text */
+.welcome-text {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.welcome-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Featured Species Section */
+.featured-species {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.featured-species h2 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+}
+
+.species-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.species-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.species-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.species-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.species-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.species-card:hover .species-image img {
+  transform: scale(1.05);
+}
+
+.species-content {
+  padding: 20px;
+}
+
+.species-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.species-content p {
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.learn-more {
+  display: inline-block;
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.learn-more:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Conservation Efforts Section */
+.conservation-efforts {
+  padding: 60px 0;
+  background-color: white;
+}
+
+.conservation-efforts h2 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+}
+
+.efforts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.effort-card {
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.effort-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.effort-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.effort-card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.effort-card p {
+  color: var(--text-color);
+}
+
+/* Get Involved Section */
+.get-involved {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.get-involved h2 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+}
+
+.involved-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.involved-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease;
+}
+
+.involved-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.involved-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.involved-card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.involved-card p {
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.involved-card .btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.involved-card .btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .species-grid,
+  .efforts-grid,
+  .involved-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .species-card,
+  .effort-card,
+  .involved-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

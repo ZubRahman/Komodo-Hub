@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy & Security - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/privacy.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="privacy-header">
+    <div class="container">
+        <h1>Privacy & Security</h1>
+        <p>Learn about how we protect your data and manage your privacy settings on Komodo Hub.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="privacy-content">
+            <div class="privacy-nav">
+                <div class="privacy-nav-list">
+                    <div class="privacy-nav-item active" data-section="privacy-policy">Privacy Policy</div>
+                    <div class="privacy-nav-item" data-section="data-collection">Data Collection</div>
+                    <div class="privacy-nav-item" data-section="security">Security</div>
+                    <div class="privacy-nav-item" data-section="childrens-privacy">Children's Privacy</div>
+                    <div class="privacy-nav-item" data-section="contact-us">Contact Us</div>
+                </div>
+            </div>
+
+            <div class="privacy-main">
+                <div class="privacy-section" id="privacy-policy">
+                    <h2>Privacy Policy</h2>
+                    <p>Last updated: June 1, 2025</p>
+                    
+                    <p>Komodo Hub ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+                    
+                    <p>We take your privacy seriously and have implemented measures to ensure that your personal information is protected. Please read this Privacy Policy carefully. By accessing or using our website and services, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.</p>
+                    
+                    <div class="highlight">
+                        <h3>Key Points</h3>
+                        <ul>
+                            <li>We collect information that you provide directly to us, such as when you create an account, participate in activities, or contact us.</li>
+                            <li>We use your information to provide, maintain, and improve our services, communicate with you, and for educational purposes.</li>
+                            <li>We do not sell your personal information to third parties.</li>
+                            <li>We implement appropriate security measures to protect your personal information.</li>
+                            <li>Parents and guardians have the right to review and request deletion of their child's personal information.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="privacy-section" id="data-collection">
+                    <h2>Data Collection</h2>
+                    
+                    <h3>Information You Provide to Us</h3>
+                    <p>We collect information that you provide directly to us, including:</p>
+                    <ul>
+                        <li><strong>Account Information:</strong> When you create an account, we collect your name, email address, password, and role (student, teacher, or school administrator).</li>
+                        <li><strong>Profile Information:</strong> You may provide additional information such as a profile picture, school name, grade level, or classroom information.</li>
+                        <li><strong>Content:</strong> We collect content that you create, upload, or share on our platform, such as assignments, messages, and sighting reports.</li>
+                        <li><strong>Communications:</strong> If you contact us directly, we may receive additional information about you, such as your name, email address, and the contents of your message.</li>
+                    </ul>
+                    
+                    <h3>Information We Collect Automatically</h3>
+                    <p>When you access or use our website, we may automatically collect certain information about your device and usage, including:</p>
+                    <ul>
+                        <li><strong>Device Information:</strong> We collect information about the device you use to access our services, such as your IP address, browser type, and operating system.</li>
+                        <li><strong>Usage Information:</strong> We collect information about your activity on our website, such as the pages you visit, the time and duration of your visit, and the actions you take.</li>
+                        <li><strong>Cookies and Similar Technologies:</strong> We use cookies and similar technologies to collect information about your browsing behavior and preferences.</li>
+                    </ul>
+                    
+                    <h3>Information from Third Parties</h3>
+                    <p>We may receive information about you from third parties, such as:</p>
+                    <ul>
+                        <li><strong>Schools and Educational Institutions:</strong> If you are a student or teacher, we may receive information about you from your school or educational institution.</li>
+                        <li><strong>Other Users:</strong> Other users may provide information about you when they invite you to join a classroom or share content with you.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-section" id="security">
+                    <h2>Security</h2>
+                    
+                    <p>We take the security of your personal information seriously and implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, and destruction.</p>
+                    
+                    <div class="security-tips">
+                        <h3>Security Tips</h3>
+                        
+                        <div class="security-tip">
+                            <div class="security-tip-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="security-tip-content">
+                                <h4>Use a Strong Password</h4>
+                                <p>Create a unique password that includes a mix of letters, numbers, and special characters. Avoid using easily guessable information like birthdays or names.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="security-tip">
+                            <div class="security-tip-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="security-tip-content">
+                                <h4>Keep Your Account Information Private</h4>
+                                <p>Never share your account credentials with others, and be cautious about the information you share in your profile.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="security-tip">
+                            <div class="security-tip-icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </div>
+                            <div class="security-tip-content">
+                                <h4>Log Out When Finished</h4>
+                                <p>Always log out of your account when using a shared or public computer to prevent unauthorized access.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="security-tip">
+                            <div class="security-tip-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="security-tip-content">
+                                <h4>Keep Your Devices Secure</h4>
+                                <p>Ensure your devices have up-to-date security software and operating systems to protect against malware and other threats.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Data Breach Notification</h3>
+                    <p>In the event of a data breach that affects your personal information, we will notify you and the appropriate authorities as required by applicable law.</p>
+                </div>
+
+                <div class="privacy-section" id="childrens-privacy">
+                    <h2>Children's Privacy</h2>
+                    
+                    <p>Komodo Hub is designed for use by children, teachers, and schools. We are committed to protecting the privacy of children and complying with applicable laws, including the Children's Online Privacy Protection Act (COPPA) in the United States.</p>
+                    
+                    <h3>Parental Consent</h3>
+                    <p>We require parental consent before collecting personal information from children under the age of 13. If you are a parent or guardian and believe your child has provided us with personal information without your consent, please contact us immediately.</p>
+                    
+                    <h3>Information We Collect from Children</h3>
+                    <p>We collect limited personal information from children, such as their name, email address, and school information. We use this information solely for the purpose of providing our educational services.</p>
+                    
+                    <h3>Parental Rights</h3>
+                    <p>Parents and guardians have the right to review, delete, and control the use of their child's personal information. To exercise these rights, please contact us using the information provided in the "Contact Us" section.</p>
+                </div>
+
+                <div class="privacy-section" id="contact-us">
+                    <h2>Contact Us</h2>
+                    
+                    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:</p>
+                    
+                    <div class="highlight">
+                        <p><strong>Email:</strong> privacy@komodohub.org</p>
+                        <p><strong>Address:</strong> Komodo Hub, 123 Wildlife Way, Nature Valley, NV 12345</p>
+                        <p><strong>Phone:</strong> (123) 456-7890</p>
+                    </div>
+                    
+                    <p>We will respond to your request within a reasonable timeframe.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Privacy navigation
+        const navItems = document.querySelectorAll('.privacy-nav-item');
+        const sections = document.querySelectorAll('.privacy-section');
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                navItems.forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section');
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

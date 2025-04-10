@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard - Komodo Hub{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="teacher-header">
+    <div class="container">
+        <h1>Teacher Dashboard</h1>
+        <p>Welcome back, {{ session.get('first_name', 'Teacher') }}! Manage your account, messages, and assignments.</p>
+    </div>
+</section>
+
+<section class="teacher-dashboard">
+    <div class="container">
+        <div class="dashboard-tabs">
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="account">Account Settings</button>
+                <button class="tab-btn" data-tab="messages">Messages</button>
+                <button class="tab-btn" data-tab="assignments">Assignments</button>
+                <button class="tab-btn" data-tab="students">Students</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Account Settings Tab -->
+                <div class="tab-pane active" id="account-tab">
+                    <div class="account-settings">
+                        <h2>Account Settings</h2>
+                        
+                        <form action="{{ url_for('update_teacher_account') }}" method="POST" class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name" value="{{ user.first_name if user else '' }}">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name" value="{{ user.last_name if user else '' }}">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" value="{{ user.email if user else '' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new_password">New Password (leave blank to keep current password)</label>
+                                <input type="password" id="new_password" name="new_password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm New Password</label>
+                                <input type="password" id="confirm_password" name="confirm_password">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Messages Tab -->
+                <div class="tab-pane" id="messages-tab">
+                    <div class="messages-section">
+                        <h2>Messages</h2>
+                        
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-envelope-open"></i>
+                            </div>
+                            <h3>No Messages Yet</h3>
+                            <p>You don't have any messages at the moment. When you receive messages from students, they will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Assignments Tab -->
+                <div class="tab-pane" id="assignments-tab">
+                    <div class="assignments-section">
+                        <h2>Publish Assignments</h2>
+                        
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>No Assignments Published Yet</h3>
+                            <p>You haven't published any assignments yet. When you create assignments, they will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Students Tab -->
+                <div class="tab-pane" id="students-tab">
+                    <div class="students-section">
+                        <h2>Your Students</h2>
+                        
+                        {% if students %}
+                        <div class="students-list">
+                            <table class="students-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for student in students %}
+                                    <tr>
+                                        <td>{{ student.id }}</td>
+                                        <td>{{ student.first_name }}</td>
+                                        <td>{{ student.last_name }}</td>
+                                        <td>{{ student.email }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>No Students Found</h3>
+                            <p>There are no student accounts registered in the system yet.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons and panes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding tab pane
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Password confirmation check
+        const newPasswordInput = document.getElementById('new_password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const settingsForm = document.querySelector('.settings-form');
+        
+        if (settingsForm && newPasswordInput && confirmPasswordInput) {
+            settingsForm.addEventListener('submit', function(e) {
+                if (newPasswordInput.value && newPasswordInput.value !== confirmPasswordInput.value) {
+                    e.preventDefault();
+                    alert('Passwords do not match. Please try again.');
+                    confirmPasswordInput.focus();
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
