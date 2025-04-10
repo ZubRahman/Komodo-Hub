@@ -43,7 +43,7 @@ def before_request():
     session.permanent = True
     
     # Print session data for debugging
-    # print("Current session:", dict(session))
+    print("Current session:", dict(session))
 
 # Context processor to make session data available to all templates
 @app.context_processor
@@ -194,6 +194,26 @@ def forgot_password():
     
     return render_template('forgot_password.html')
 
+@app.route('/resources')
+def resources():
+    return render_template('resources.html')
+
+@app.route('/knowledge-base')
+def knowledge_base():
+    return redirect(url_for('resources') + '#knowledge-base')
+
+@app.route('/learning-resources')
+def learning_resources():
+    return render_template('learning_resources.html')
+
+@app.route('/conservation-news')
+def conservation_news():
+    return redirect(url_for('resources') + '#conservation-news')
+
+@app.route('/kids-games')
+def kids_games():
+    return render_template('kids_games.html')
+
 @app.route('/komodo-wordle')
 def komodo_wordle():
     return render_template('komodo_wordle.html')
@@ -201,6 +221,18 @@ def komodo_wordle():
 @app.route('/komodo-quiz')
 def komodo_quiz():
     return render_template('komodo_quiz.html')
+
+@app.route('/quiz-answers')
+def quiz_answers():
+    return render_template('answers.html')
+
+@app.route('/conservation-programs')
+def conservation_programs():
+    return render_template('conservation_programs.html')
+
+@app.route('/schools-communities')
+def schools_communities():
+    return render_template('schools_communities.html')
 
 @app.route('/reports-sightings', methods=['GET', 'POST'])
 def reports_sightings():
@@ -225,6 +257,10 @@ def privacy_redirect():
 @app.route('/terms-of-service')
 def terms_of_service():
     return render_template('terms_of_service.html')
+
+@app.route('/pricing')
+def pricing():
+    return render_template('pricing.html')
 
 @app.route('/account')
 def account():
@@ -257,7 +293,7 @@ def student():
     
     try:
         # Print debug info
-        # print(f"Fetching scores for user_id: {session['id']}")
+        print(f"Fetching scores for user_id: {session['id']}")
         
         conn = sqlite3.connect("gamescore.db")
         conn.row_factory = sqlite3.Row
@@ -266,7 +302,7 @@ def student():
         # Check if the user has any scores
         cursor.execute("SELECT COUNT(*) as count FROM scores WHERE user_id = ?", (session['id'],))
         count = cursor.fetchone()['count']
-        # print(f"Found {count} scores for user_id: {session['id']}")
+        print(f"Found {count} scores for user_id: {session['id']}")
         
         # Get all scores for the current user
         cursor.execute("""
@@ -293,12 +329,12 @@ def student():
             average_score = round(cursor.fetchone()['avg_score'], 1)
             
             # Print the scores for debugging
-            # print(f"Highest score: {highest_score}")
-            # print(f"Average score: {average_score}")
-            # print(f"Total games: {total_games}")
-            # print("Game scores:")
-            # for score in game_scores:
-            #     print(f"  Score: {score['score']}, Date: {score['created_at']}, Type: {score['game_type']}")
+            print(f"Highest score: {highest_score}")
+            print(f"Average score: {average_score}")
+            print(f"Total games: {total_games}")
+            print("Game scores:")
+            for score in game_scores:
+                print(f"  Score: {score['score']}, Date: {score['created_at']}, Type: {score['game_type']}")
         
         conn.close()
     except Exception as e:
@@ -348,6 +384,52 @@ def update_student_account():
     flash('Your account has been updated successfully!', 'success')
     return redirect(url_for('student'))
 
+@app.route('/account_settings', methods=['GET', 'POST'])
+def account_settings():
+    if not session.get('logged_in'):
+        flash('You must be logged in to view your account settings.', 'danger')
+        return redirect(url_for('login'))
+        
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE id = ?", (session['id'],))
+    user = cursor.fetchone()
+
+    if request.method == 'POST':
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        new_email = request.form.get('email')
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+
+        if first_name:
+            cursor.execute("UPDATE users SET first_name = ? WHERE id = ?", (first_name, session['id']))
+            # Update session data
+            session['first_name'] = first_name
+        if last_name:
+            cursor.execute("UPDATE users SET last_name = ? WHERE id = ?", (last_name, session['id']))
+        if new_email:
+            cursor.execute("UPDATE users SET email = ? WHERE id = ?", (new_email, session['id']))
+            # Update session data
+            session['email'] = new_email
+        if new_password and confirm_password and new_password == confirm_password:
+            hashed_password = generate_password_hash(new_password)
+            cursor.execute("UPDATE users SET password = ? WHERE id = ?", (hashed_password, session['id']))
+
+        conn.commit()
+        conn.close()
+        flash('Your account has been updated successfully!', 'success')
+        return redirect(url_for('account_settings'))
+
+    return render_template('account_settings.html', user=user)
+
+@app.route('/manage_payments')
+def manage_payments():
+    if not session.get('logged_in'):
+        flash('You must be logged in to manage payments.', 'danger')
+        return redirect(url_for('login'))
+    return render_template('manage_payments.html')
+
 @app.route("/save_score", methods=["POST"])
 def save_score():
     if "id" not in session:
@@ -359,7 +441,7 @@ def save_score():
         score = data.get("score", 0)
         user_id = session["id"]
         
-        # print(f"Saving score {score} for user_id {user_id}")
+        print(f"Saving score {score} for user_id {user_id}")
         
         # Make sure gamescore.db exists and has the correct table
         conn = sqlite3.connect("gamescore.db")
@@ -368,7 +450,7 @@ def save_score():
         # Check if scores table exists, if not create it
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='scores'")
         if not cursor.fetchone():
-            # print("Creating scores table")
+            print("Creating scores table")
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS scores (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -386,7 +468,7 @@ def save_score():
         # Verify the score was saved
         cursor.execute("SELECT * FROM scores WHERE user_id = ? ORDER BY id DESC LIMIT 1", (user_id,))
         saved_score = cursor.fetchone()
-        # print(f"Saved score: {saved_score}")
+        print(f"Saved score: {saved_score}")
         
         conn.close()
         
@@ -396,6 +478,23 @@ def save_score():
         import traceback
         traceback.print_exc()
         return jsonify({"success": False, "message": f"Error: {str(e)}"}), 500
+
+@app.route("/progress")
+def progress():
+    if "id" not in session:
+        return "You must be logged in to view your progress.", 403
+
+    user_id = session["id"]
+    conn = sqlite3.connect("gamescore.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT score, created_at FROM scores WHERE user_id = ? ORDER BY created_at ASC", (user_id,))
+    scores_data = cursor.fetchall()
+    conn.close()
+
+    scores = [row[0] for row in scores_data]
+    timestamps = [row[1] for row in scores_data]
+
+    return render_template("progress.html", scores=scores, timestamps=timestamps)
 
 def get_users():
     conn = get_db_connection()
@@ -444,7 +543,7 @@ def admin():
         return redirect(url_for('login'))
 
     # Print session data for debugging
-    # print("Admin route - Session data:", dict(session))
+    print("Admin route - Session data:", dict(session))
 
     conn = get_db_connection()
     users = conn.execute('SELECT * FROM users').fetchall()
@@ -473,6 +572,22 @@ def donate():
 @app.route('/volunteer')
 def volunteer():
     return render_template('volunteer.html')
+
+# Placeholder SVG generator
+@app.route('/placeholder.svg')
+def placeholder_svg():
+    # Keep the function body the same
+    width = request.args.get('width', 300)
+    height = request.args.get('height', 200)
+    svg = f'''
+    <svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#f0f0f0"/>
+        <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#888">
+            {width}x{height}
+        </text>
+    </svg>
+    '''
+    return svg, 200, {'Content-Type': 'image/svg+xml'}
 
 @app.route('/teacher')
 def teacher():
