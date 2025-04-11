@@ -14,10 +14,15 @@ https://github.com/ZubRahman/Komodo-Hub.git
 
 ## Modules imported (needed):
 from flask (render_template, request, redirect, url_for, session, flash, jsonify)
+
 os
+
 from werkzeug.utils (secure_filename)
+
 sqlite3
+
 from werkzeug.security (generate_password_hash, check_password_hash)
+
 from datetime (timedelta)
 
 
