@@ -1,6 +1,6 @@
-#Komodo Hub
+## Komodo Hub
 
-A website dedicated to animal conservation, preservation and animal rights.
+A website dedicated to education of animal conservation, preservation, and animal rights.
 
 https://github.com/ZubRahman/Komodo-Hub.git
 
@@ -12,7 +12,7 @@ https://github.com/ZubRahman/Komodo-Hub.git
 - **Database**: SQLite
 - **Templating**: Jinja2 (via Flask templates)
 
-## modules imported (needed):
+## Modules imported (needed):
 from flask (render_template, request, redirect, url_for, session, flash, jsonify)
 os
 from werkzeug.utils (secure_filename)
