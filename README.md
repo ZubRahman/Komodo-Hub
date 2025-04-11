@@ -4,6 +4,16 @@ A website dedicated to education of animal conservation, preservation, and anima
 
 https://github.com/ZubRahman/Komodo-Hub.git
 
+## Collaborators:
+Mohammad Zubayer Rahman
+
+Roman Gill
+
+Yazdan Muhammad
+
+Ayaan Parvez
+
+Joyal Biju
 
 ## ⚙️ Technologies Used
 
